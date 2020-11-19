@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "izcc-2021-winter-metro",
+  "private_key_id": "eaf72cd347279c8369e10af9df9d891046f0be3b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDmeLxa3Ct1OqH+\n32i+t70E/baTVuxk90ozmXfuGLZ2YZ2P/6jpsbxA9297L7T3G8uxthLt98haaq+U\nZiKtZEZR7Z1mWQGJLTootRVcIjY3wKaYn1rX7p2BA8xK/R1pyjfNF3ztDlTtPeJR\nAnJe2y2pfRcAnbQdGTPN4ZDBkZLEOGGTnYLd19T4/LnaNLNW+ESnASDFSVDllgHb\nq/sGaPni/K2JQ2+Sp8CObApnOLqYasWf9WylS0O54uqRpr/ebjUiMSaCtw8Ip0Rf\nKH0oKHKzakcjij8FktVmsgY7D+sJ8s3q8idbUvL+J4SHCyT/mPN4kxBbpsWhAy1E\n9ibeFJknAgMBAAECggEAPIZ6mLX3Z7r1LhUH0gY4yqXCm+EZBc73mqN0HoA48s/h\n7B4tAupdUQZqLYSy1q5jCRGS2RHYeP5JjARimPybhwqK6oT3ZUoOWwBrUp3ddTjP\nx4cZ+Vk93dLchNkCL3UewGqpsSuxW/iDhdjJpmWTEU67irrfwUCMHUZemKcdTxAr\n2tVtQPAU4euLYB8bJ2wt+DGV329Fu9KCjp9i/nEGCOYsD/nvrlkz9CwUT63sCBTT\n07xZ2g88xb18UuyRAEyOuiSK9AMsGe9ZwL5EFfuZzdUJzxKzM+zQKVmBmQLhHINX\nAqGdGuzf6x+g6Jpsd3oUp5k8w3bjrPSma+lKhQUYAQKBgQD4fomWh2eJgYTDSJqB\nIkUQA8UoVVPFMUi4rs+WeM8I82KWrEtdPab34qJDdiw6sbTULUGECKZG2TqOsJNP\n5+eklC54Ea0bdl72j/3dJU631Q1XeIEutDsLj7NGmP9pZ6U+Up2WPFgOwLzCCd0U\nj2BgBmO7nLBmdRuGcjKT28iMAQKBgQDtbtboa5mDjqqAVrF8Ktz7P1SwvkypVRLW\n5QyPqUCR4EN2ZeLZ6PGT84aoUbZ8goUoOK0DXU8MEIEPbz7IK0axxfaWVksN3g9P\nhLS4QJzlygR4QZ1EKPHABTql1V+XObsG/aEZPeOSNWvjwlcOdimcTQusE60Zbbu4\n9iOcUMtFJwKBgQDy4+Si0Ul/26ykoUP8cz3kUHsXWIggWHMHqj9Yik98JUI5msGz\nqv6Yj9sha9IBsQ/a0T2XzEiTOeQF80yar0f506m0TTrSfBqIkOiIj93ozIRU+oHy\n39JTE6wdlpEZO2kGiQRmBCfii7w1QiTp4tdGJRi5GohGLbOw79DGO+9EAQKBgQDA\n+f9t9FZXWNM3cD7dHrFw+65H4MPKNT0UsCGfef7jEZWDW5gfaHdAuwPNNmzNkf/M\nCxSD0Yj300oyU0aBxrq0rqOW2RgzczKafM+tmcZr9d/gJeQ+i9DBMv7R3jTNYryi\nF+6h521ZXlYMTd4YAO4c/XnpKCzeqBOVZ2jWGcy8rQKBgQDSThUpY5xzoOWv08XY\nApU9IbTjtIeRmw6jLpSFHq5Zx4iLkoGQeNiK/ZpOE5S4eje7oqJzM0HVLv7YCJ53\nCBwKZqbccFGqW6vVXmFFeAIgJCoJrD5r0+hodAuJMVr2KvsyS8OBVrha9f9DG3w6\nWUOAf82CU9GYoIAiADs/s6as9A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "izcc111winter@izcc-2021-winter-metro.iam.gserviceaccount.com",
+  "client_id": "103487879358282103107",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/izcc111winter%40izcc-2021-winter-metro.iam.gserviceaccount.com"
+}
