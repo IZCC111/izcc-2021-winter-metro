@@ -69,4 +69,4 @@ async function gsrun(cl) {
 };
 
 
-app.listen(7122, () => console.log('Server up and running'));
+app.listen(8080, () => console.log('Server up and running'));
