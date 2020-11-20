@@ -22,10 +22,10 @@
     const lati = <%- JSON.stringify(latitude) %>
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
-    const north = <%= north %>;
-    const east = <%= east %>;
-    const south = <%= south %>;
-    const west = <%= west %>;
+    const north = <%- JSON.stringify(north) %>;
+    const east = <%- JSON.stringify(east) %>;
+    const south = <%- JSON.stringify(south) %>;
+    const west = <%- JSON.stringify(west) %>;
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -45,7 +45,8 @@
             let ilatitude = lati[i];
             let ilongitude = long[i];
             let ieki = eki[i];
-            if (ilatitude > north || ilatitude < south || ilongitude > east || ilongitude < west) {
+            console.log(north);
+            if (parseFloat(ilatitude) > parseFloat(north) || parseFloat(ilatitude) < parseFloat(south) || parseFloat(ilongitude) > parseFloat(east) || parseFloat(ilongitude) < parseFloat(west)) {
                 xeki.innerHTML = "超出範圍";
                 break;
             }
