@@ -22,6 +22,10 @@
     const lati = <%- JSON.stringify(latitude) %>
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
+    const north = <%= north %>;
+    const east = <%= east %>;
+    const south = <%= south %>;
+    const west = <%= west %>;
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -41,19 +45,18 @@
             let ilatitude = lati[i];
             let ilongitude = long[i];
             let ieki = eki[i];
-            console.log(ilatitude);
-            console.log(ilongitude);
-            console.log(ieki);
+            if (ilatitude > north || ilatitude < south || ilongitude > east || ilongitude < west) {
+                xeki.innerHTML = "超出範圍";
+                break;
+            }
             if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
                 if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
                     xeki.innerHTML = ieki;
                     break;
-                }
-                else{
+                } else {
                     xeki.innerHTML = "無鄰近車站";
                 }
-            }
-            else{
+            } else {
                 xeki.innerHTML = "無鄰近車站";
             }
         }
