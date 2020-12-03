@@ -5,7 +5,7 @@
     <title>捷運大富翁</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
-<html lang="zh-TW">
+    <html lang="zh-TW">
 <body>
 <header>
     <nav>
@@ -15,7 +15,9 @@
     <p id="demo"></p>
     <button id="reload" onclick="getLocation()">重新定位</button>
 </header>
-<img src="images/metro2021.png" style="width: 100%">
+<main>
+    <img src="images/metro2021.png" style="width: 100%">
+</main>
 <footer class="container">
     <ul class="ful row">
         <li class="flist col-3"><img class="focon" src="images/icons/group.png"><br>隊伍</li>
@@ -24,9 +26,6 @@
         <li class="flist col-3"><img class="focon" src="images/icons/cloud-computing.png"><br>上傳</li>
     </ul>
 </footer>
-
-
-
 
 
 <script>
@@ -47,6 +46,7 @@
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -97,7 +97,8 @@
                 break;
         }
     }
-//抓定位↑
+
+    //抓定位↑
 </script>
 
 </body>

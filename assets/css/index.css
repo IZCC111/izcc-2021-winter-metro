@@ -1,29 +1,33 @@
 body{
     margin: 0;
-    overflow: hidden;
 }
-
+header{
+    top: 0;
+    position: fixed;
+    display: block;
+    width: 100%;
+}
 nav{
     background-color: #0088d6;
     height: auto;
     color: white;
     text-align: center;
-    display: block;
-    top: 0;
-    width: 100%;
 }
 #xeki{
     margin: 0;
-    font-size: 36px;
+    font-size: 40px;
     display: inline;
 }
 #demo , #reload{
     display: inline;
     font-size: 10px;
 }
-
+main{
+    margin-top: 80px;
+}
 footer{
     display: block;
+    position: fixed;
     bottom: 0!important;
     width: 100%;
     padding: 0!important;
