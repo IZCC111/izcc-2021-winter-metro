@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+}
+
+nav{
+    background-color: #0088d6;
+    height: auto;
+    color: white;
+    text-align: center;
+    display: block;
+    top: 0;
+    width: 100%;
+}
+#xeki{
+    margin: 0;
+    font-size: 48px ;
+    display: inline;
+}
+#demo , #reload{
+    display: inline;
+    font-size: 2px;
+}

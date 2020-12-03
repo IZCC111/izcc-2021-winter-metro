@@ -3,16 +3,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPS</title>
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <html lang="zh-TW">
 <body>
+<header>
+    <nav>
+        <h1 id="xeki"></h1>
 
-<p>Click the button to get your coordinates.</p>
+    </nav>
+    <p id="demo"></p>
+    <button id="reload" onclick="getLocation()">重新定位</button>
+</header>
+<img src="images/metro2021.png" style="width: 100%">
+<footer>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+</footer>
 
-<button onclick="getLocation()">Try It</button>
 
-<p id="demo"></p>
-<p id="xeki"></p>
+
 
 
 <script>
@@ -27,6 +39,12 @@
     const south = <%- JSON.stringify(south) %>;
     const west = <%- JSON.stringify(west) %>;
 
+    //抓定位↓
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -38,18 +56,13 @@
     function showPosition(position) {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
-        x.innerHTML = "Latitude: " + latitude +
-            "<br>Longitude: " + longitude;
+        x.innerHTML = "LAT: " + latitude +
+            ", LONG: " + longitude;
 
         for (let i = 0; i < len; i++) {
             let ilatitude = lati[i];
             let ilongitude = long[i];
             let ieki = eki[i];
-            console.log(north);
-            if (parseFloat(ilatitude) > parseFloat(north) || parseFloat(ilatitude) < parseFloat(south) || parseFloat(ilongitude) > parseFloat(east) || parseFloat(ilongitude) < parseFloat(west)) {
-                xeki.innerHTML = "超出範圍";
-                break;
-            }
             if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
                 if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
                     xeki.innerHTML = ieki;
@@ -82,7 +95,7 @@
                 break;
         }
     }
-
+//抓定位↑
 </script>
 
 </body>
