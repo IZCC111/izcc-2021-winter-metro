@@ -6,6 +6,7 @@ header{
     position: fixed;
     display: block;
     width: 100%;
+    background-color: white;
 }
 nav{
     background-color: #0088d6;
@@ -21,6 +22,9 @@ nav{
 #demo , #reload{
     display: inline;
     font-size: 10px;
+}
+#Image-Maps{
+    width: 100%;
 }
 main{
     margin-top: 80px;

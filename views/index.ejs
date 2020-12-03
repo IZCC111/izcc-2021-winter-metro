@@ -1,11 +1,28 @@
 <!DOCTYPE html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>捷運大富翁</title>
     <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
-    <html lang="zh-TW">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="./assets/js/jquery.rwdImageMaps.js"></script>
+    <script>
+        $(document).ready(function(e) {
+            $('img[usemap]').rwdImageMaps();
+        });
+    </script>
+</head>
 <body>
 <header>
     <nav>
@@ -16,7 +33,142 @@
     <button id="reload" onclick="getLocation()">重新定位</button>
 </header>
 <main>
-    <img src="images/metro2021.png" style="width: 100%">
+    <img id="Image-Maps" src="./images/metro2021.png" border="0" orgWidth="960" orgHeight="1286" usemap="#image-maps" alt="" />
+    <map name="image-maps" id="ImageMaps">
+        <area  alt="" title="淡水" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" shape="rect" coords="112,82,172,112" style="outline:none;" target="_self"     />
+        <area  alt="" title="紅樹林" href="http://www.image-maps.com/" shape="rect" coords="80,127,171,160" style="outline:none;" target="_self"     />
+        <area  alt="" title="竹圍" href="http://www.image-maps.com/" shape="rect" coords="113,177,169,210" style="outline:none;" target="_self"     />
+        <area  alt="" title="關渡" href="http://www.image-maps.com/" shape="rect" coords="112,222,168,253" style="outline:none;" target="_self"     />
+        <area  alt="" title="忠義" href="http://www.image-maps.com/" shape="rect" coords="159,253,200,309" style="outline:none;" target="_self"     />
+        <area  alt="" title="復興崗" href="http://www.image-maps.com/" shape="rect" coords="200,253,248,309" style="outline:none;" target="_self"     />
+        <area  alt="" title="北投" href="http://www.image-maps.com/" shape="rect" coords="251,249,292,310" style="outline:none;" target="_self"     />
+        <area  alt="" title="奇岩" href="http://www.image-maps.com/" shape="rect" coords="296,253,332,309" style="outline:none;" target="_self"     />
+        <area  alt="" title="唭哩岸" href="http://www.image-maps.com/" shape="rect" coords="330,251,384,307" style="outline:none;" target="_self"     />
+        <area  alt="" title="石牌" href="http://www.image-maps.com/" shape="rect" coords="385,284,440,314" style="outline:none;" target="_self"     />
+        <area  alt="" title="明德" href="http://www.image-maps.com/" shape="rect" coords="382,327,441,357" style="outline:none;" target="_self"     />
+        <area  alt="" title="芝山" href="http://www.image-maps.com/" shape="rect" coords="382,371,449,406" style="outline:none;" target="_self"     />
+        <area  alt="" title="士林" href="http://www.image-maps.com/" shape="rect" coords="381,416,442,450" style="outline:none;" target="_self"     />
+        <area  alt="" title="劍潭" href="http://www.image-maps.com/" shape="rect" coords="380,461,444,496" style="outline:none;" target="_self"     />
+        <area  alt="" title="圓山" href="http://www.image-maps.com/" shape="rect" coords="382,506,452,539" style="outline:none;" target="_self"     />
+        <area  alt="" title="大橋頭" href="http://www.image-maps.com/" shape="rect" coords="312,546,364,602" style="outline:none;" target="_self"     />
+        <area  alt="" title="台北橋" href="http://www.image-maps.com/" shape="rect" coords="229,603,317,643" style="outline:none;" target="_self"     />
+        <area  alt="" title="菜寮" href="http://www.image-maps.com/" shape="rect" coords="196,645,263,679" style="outline:none;" target="_self"     />
+        <area  alt="" title="三重" href="http://www.image-maps.com/" shape="rect" coords="134,654,192,709" style="outline:none;" target="_self"     />
+        <area  alt="" title="先嗇宮" href="http://www.image-maps.com/" shape="rect" coords="72,711,154,750" style="outline:none;" target="_self"     />
+        <area  alt="" title="頭前庄" href="http://www.image-maps.com/" shape="rect" coords="5,762,127,794" style="outline:none;" target="_self"     />
+        <area  alt="" title="新莊" href="http://www.image-maps.com/" shape="rect" coords="32,813,103,852" style="outline:none;" target="_self"     />
+        <area  alt="" title="輔大" href="http://www.image-maps.com/" shape="rect" coords="22,863,95,905" style="outline:none;" target="_self"     />
+        <area  alt="" title="丹鳳" href="http://www.image-maps.com/" shape="rect" coords="26,906,94,944" style="outline:none;" target="_self"     />
+        <area  alt="" title="迴龍" href="http://www.image-maps.com/" shape="rect" coords="20,952,97,993" style="outline:none;" target="_self"     />
+        <area  alt="" title="行天宮" href="http://www.image-maps.com/" shape="rect" coords="484,598,575,630" style="outline:none;" target="_self"     />
+        <area  alt="" title="雙連" href="http://www.image-maps.com/" shape="rect" coords="333,611,408,643" style="outline:none;" target="_self"     />
+        <area  alt="" title="北門" href="http://www.image-maps.com/" shape="rect" coords="261,686,347,728" style="outline:none;" target="_self"     />
+        <area  alt="" title="" href="http://www.image-maps.com/" shape="rect" coords="264,729,354,774" style="outline:none;" target="_self"     />
+        <area  alt="" title="龍山寺" href="http://www.image-maps.com/" shape="rect" coords="160,728,255,773" style="outline:none;" target="_self"     />
+        <area  alt="" title="江子翠" href="http://www.image-maps.com/" shape="rect" coords="184,790,260,825" style="outline:none;" target="_self"     />
+        <area  alt="" title="新埔(新埔民生)" href="http://www.image-maps.com/" shape="rect" coords="103,845,245,876" style="outline:none;" target="_self"     />
+        <area  alt="" title="板橋" href="http://www.image-maps.com/" shape="rect" coords="114,886,305,924" style="outline:none;" target="_self"     />
+        <area  alt="" title="府中" href="http://www.image-maps.com/" shape="rect" coords="152,941,215,974" style="outline:none;" target="_self"     />
+        <area  alt="" title="亞東醫院" href="http://www.image-maps.com/" shape="rect" coords="126,988,214,1027" style="outline:none;" target="_self"     />
+        <area  alt="" title="忠孝新生" href="http://www.image-maps.com/" shape="rect" coords="473,710,563,774" style="outline:none;" target="_self"     />
+        <area  alt="" title="台大醫院" href="http://www.image-maps.com/" shape="rect" coords="328,786,410,818" style="outline:none;" target="_self"     />
+        <area  alt="" title="小南門" href="http://www.image-maps.com/" shape="rect" coords="302,828,361,879" style="outline:none;" target="_self"     />
+        <area  alt="" title="東門" href="http://www.image-maps.com/" shape="rect" coords="443,810,510,867" style="outline:none;" target="_self"     />
+        <area  alt="" title="古亭" href="http://www.image-maps.com/" shape="rect" coords="418,878,496,913" style="outline:none;" target="_self"     />
+        <area  alt="" title="板新" href="http://www.image-maps.com/" shape="rect" coords="248,927,307,962" style="outline:none;" target="_self"     />
+        <area  alt="" title="中原" href="http://www.image-maps.com/" shape="rect" coords="252,982,318,1013" style="outline:none;" target="_self"     />
+        <area  alt="" title="橋和" href="http://www.image-maps.com/" shape="rect" coords="255,1032,294,1088" style="outline:none;" target="_self"     />
+        <area  alt="" title="頂溪" href="http://www.image-maps.com/" shape="rect" coords="343,938,401,968" style="outline:none;" target="_self"     />
+        <area  alt="" title="永安市場" href="http://www.image-maps.com/" shape="rect" coords="317,982,396,1017" style="outline:none;" target="_self"     />
+        <area  alt="" title="中和" href="http://www.image-maps.com/" shape="rect" coords="302,1031,349,1085" style="outline:none;" target="_self"     />
+        <area  alt="" title="南勢角" href="http://www.image-maps.com/" shape="rect" coords="372,1073,441,1108" style="outline:none;" target="_self"     />
+        <area  alt="" title="景平" href="http://www.image-maps.com/" shape="rect" coords="430,1008,469,1058" style="outline:none;" target="_self"     />
+        <area  alt="" title="十四張" href="http://www.image-maps.com/" shape="rect" coords="493,1076,547,1128" style="outline:none;" target="_self"     />
+        <area  alt="" title="新店" href="http://www.image-maps.com/" shape="rect" coords="556,1212,616,1243" style="outline:none;" target="_self"     />
+        <area  alt="" title="新店區公所" href="http://www.image-maps.com/" shape="rect" coords="559,1172,673,1201" style="outline:none;" target="_self"     />
+        <area  alt="" title="七張" href="http://www.image-maps.com/" shape="rect" coords="558,1128,624,1158" style="outline:none;" target="_self"     />
+        <area  alt="" title="大坪林" href="http://www.image-maps.com/" shape="rect" coords="548,1071,639,1106" style="outline:none;" target="_self"     />
+        <area  alt="" title="景美" href="http://www.image-maps.com/" shape="rect" coords="556,1025,617,1058" style="outline:none;" target="_self"     />
+        <area  alt="" title="萬隆" href="http://www.image-maps.com/" shape="rect" coords="531,978,598,1018" style="outline:none;" target="_self"     />
+        <area  alt="" title="公館" href="http://www.image-maps.com/" shape="rect" coords="494,948,568,978" style="outline:none;" target="_self"     />
+        <area  alt="" title="台電大樓" href="http://www.image-maps.com/" shape="rect" coords="464,912,564,946" style="outline:none;" target="_self"     />
+        <area  alt="" title="大安森林公園" href="http://www.image-maps.com/" shape="rect" coords="512,796,570,862" style="outline:none;" target="_self"     />
+        <area  alt="" title="大安" href="http://www.image-maps.com/" shape="rect" coords="572,810,636,864" style="outline:none;" target="_self"     />
+        <area  alt="" title="象山" href="http://www.image-maps.com/" shape="rect" coords="741,811,787,862" style="outline:none;" target="_self"     />
+        <area  alt="" title="國父紀念館" href="http://www.image-maps.com/" shape="rect" coords="672,713,745,770" style="outline:none;" target="_self"     />
+        <area  alt="" title="" href="http://www.image-maps.com/" shape="rect" coords="842,742,891,799" style="outline:none;" target="_self"     />
+        <area  alt="" title="昆陽" href="http://www.image-maps.com/" shape="rect" coords="848,709,916,739" style="outline:none;" target="_self"     />
+        <area  alt="" title="南港" href="http://www.image-maps.com/" shape="rect" coords="851,654,940,699" style="outline:none;" target="_self"     />
+        <area  alt="" title="南港展覽館" href="http://www.image-maps.com/" shape="rect" coords="802,597,950,647" style="outline:none;" target="_self"     />
+        <area  alt="" title="永春" href="http://www.image-maps.com/" shape="rect" coords="794,744,840,798" style="outline:none;" target="_self"     />
+        <area  alt="" title="松山" href="http://www.image-maps.com/" shape="rect" coords="744,638,788,690" style="outline:none;" target="_self"     />
+        <area  alt="" title="南京三民" href="http://www.image-maps.com/" shape="rect" coords="675,635,743,690" style="outline:none;" target="_self"     />
+        <area  alt="" title="ˊ中山國中" href="http://www.image-maps.com/" shape="rect" coords="583,592,686,630" style="outline:none;" target="_self"     />
+        <area  alt="" title="松山機場" href="http://www.image-maps.com/" shape="rect" coords="562,556,678,584" style="outline:none;" target="_self"     />
+        <area  alt="" title="大直" href="http://www.image-maps.com/" shape="rect" coords="579,503,638,539" style="outline:none;" target="_self"     />
+        <area  alt="" title="劍南路" href="http://www.image-maps.com/" shape="rect" coords="560,435,612,490" style="outline:none;" target="_self"     />
+        <area  alt="" title="西湖" href="http://www.image-maps.com/" shape="rect" coords="628,430,670,483" style="outline:none;" target="_self"     />
+        <area  alt="" title="港墘" href="http://www.image-maps.com/" shape="rect" coords="679,431,722,484" style="outline:none;" target="_self"     />
+        <area  alt="" title="文德" href="http://www.image-maps.com/" shape="rect" coords="729,429,765,484" style="outline:none;" target="_self"     />
+        <area  alt="" title="內湖" href="http://www.image-maps.com/" shape="rect" coords="776,427,816,487" style="outline:none;" target="_self"     />
+        <area  alt="" title="大湖公園" href="http://www.image-maps.com/" shape="rect" coords="820,429,880,485" style="outline:none;" target="_self"     />
+        <area  alt="" title="葫洲" href="http://www.image-maps.com/" shape="rect" coords="883,431,923,490" style="outline:none;" target="_self"     />
+        <area  alt="" title="東湖" href="http://www.image-maps.com/" shape="rect" coords="855,505,914,540" style="outline:none;" target="_self"     />
+        <area  alt="" title="南港軟體園區" href="http://www.image-maps.com/" shape="rect" coords="792,552,916,586" style="outline:none;" target="_self"     />
+        <area shape="rect" coords="958,1284,960,1286" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_[msg]Er" />
+        <area  alt="" title="民權西路" href="http://www.image-maps.com/" shape="poly" coords="461,541,463,558,442,558,440,570,432,570,431,581,419,579,417,600,373,602,375,542" style="outline:none;" target="_self"     />
+        <area  alt="" title="ˊ中山國小" href="http://www.image-maps.com/" shape="poly" coords="472,548,471,572,451,574,452,598,478,599,480,585,548,584,549,570,530,570,530,549" style="outline:none;" target="_self"     />
+        <area  alt="" title="松江南京" href="http://www.image-maps.com/" shape="poly" coords="568,631,509,631,507,662,476,662,476,690,519,690,519,666,541,666,541,658,549,658,551,647,566,647,573,650,571,642" style="outline:none;" target="_self"     />
+        <area  alt="" title="中山" href="http://www.image-maps.com/" shape="poly" coords="407,638,404,662,375,662,376,691,418,690,421,668,452,666,454,654,440,650,440,638" style="outline:none;" target="_self"     />
+        <area  alt="" title="台北車站" href="http://www.image-maps.com/" shape="poly" coords="405,694,460,695,465,730,432,749,417,749,418,771,371,774,373,745,404,742" style="outline:none;" target="_self"     />
+        <area  alt="" title="善導寺" href="http://www.image-maps.com/" shape="poly" coords="437,746,436,769,428,767,413,789,411,796,483,795,480,784,458,766,468,773,458,746" style="outline:none;" target="_self"     />
+        <area  alt="" title="中正紀念堂" href="http://www.image-maps.com/" shape="poly" coords="373,833.0000610351562,372,875.0000610351562,364,877.0000610351562,361,890.0000610351562,341,891.0000610351562,338,903.0000610351562,350,911.0000610351562,408,913.0000610351562,410,864.0000610351562,418,862.0000610351562,418,834.0000610351562" style="outline:none;" target="_self"     />
+        <area  alt="" title="景安" href="http://www.image-maps.com/" shape="poly" coords="394,1009,421,1010,424,1034,408,1036,406,1060,363,1060,362,1033,389,1031" style="outline:none;" target="_self"     />
+        <area  alt="" title="秀朗橋" href="http://www.image-maps.com/" shape="poly" coords="492,1082,492,1062,535,1060,535,1048,519,1047,516,1032,472,1033,466,1086" style="outline:none;" target="_self"     />
+        <area  alt="" title="台北101/世貿" href="http://www.image-maps.com/" shape="poly" coords="724,860,753,862,755,895,673,895,675,860,700,859,702,836,724,836" style="outline:none;" target="_self"     />
+        <area  alt="" title="信義安和" href="http://www.image-maps.com/" shape="poly" coords="648,810,708,811,710,827,694,829,691,838,674,841,673,861,648,864" style="outline:none;" target="_self"     />
+        <area  alt="" title="忠孝復興" href="http://www.image-maps.com/" shape="poly" coords="662,712,664,731,654,731,648,738,634,743,618,750,613,774,571,772,573,743,600,742,605,714" style="outline:none;" target="_self"     />
+        <area  alt="" title="忠孝敦化" href="http://www.image-maps.com/" shape="poly" coords="644,746,665,746,668,769,683,770,696,794,618,798,614,794,625,768,642,770" style="outline:none;" target="_self"     />
+        <area  alt="" title="台北小巨蛋" href="http://www.image-maps.com/" shape="poly" coords="652,662,644,680,640,683,630,689,623,689,622,702,639,713,691,711,696,703,702,692,681,683,673,684,675,666,670,660" style="outline:none;" target="_self"     />
+        <area  alt="" title="市政府" href="http://www.image-maps.com/" shape="poly" coords="749,744,748,767,737,770,731,783,728,798,792,798,789,785,774,766,768,746" style="outline:none;" target="_self"     />
+        <area  alt="" title="南京復興" href="http://www.image-maps.com/" shape="poly" coords="604,630.0000152587891,600,658.0000152587891,569,662.0000152587891,569,692.0000152587891,615,694.0000152587891,620,669.0000152587891,638,666.0000152587891,641,653.0000152587891,661,648.0000152587891,665,630.0000152587891" style="outline:none;" target="_self"     />
+    </map>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Popover in a modal</h5>
+                    <p>This <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
+                    <hr>
+                    <h5>Tooltips in a modal</h5>
+                    <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br><br><br><br><br><p>fesrz</p>
+
 </main>
 <footer class="container">
     <ul class="ful row">
