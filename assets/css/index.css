@@ -23,21 +23,26 @@ nav{
 
 footer{
     display: block;
-    bottom: 0;
+    bottom: 0!important;
     width: 100%;
     padding: 0!important;
+    background-color: #0088d6;
 }
 
 .ful{
     width: 100%;
     padding: 0;
+    margin: 0!important;
 }
 
 .flist{
     list-style: none;
     display: inline;
     text-align: center;
-    background-color: #0088d6;
     height: auto;
     color: white;
+}
+.focon{
+    width: 48px;
+    height: 48px;
 }
