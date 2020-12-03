@@ -20,3 +20,24 @@ nav{
     display: inline;
     font-size: 10px;
 }
+
+footer{
+    display: block;
+    bottom: 0;
+    width: 100%;
+    padding: 0!important;
+}
+
+.ful{
+    width: 100%;
+    padding: 0;
+}
+
+.flist{
+    list-style: none;
+    display: inline;
+    text-align: center;
+    background-color: #0088d6;
+    height: auto;
+    color: white;
+}
