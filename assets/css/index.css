@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    overflow: hidden;
 }
 
 nav{
@@ -13,7 +14,7 @@ nav{
 }
 #xeki{
     margin: 0;
-    font-size: 48px ;
+    font-size: 36px;
     display: inline;
 }
 #demo , #reload{
