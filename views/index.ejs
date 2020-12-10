@@ -25,7 +25,7 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav id="nav">
         <h1 id="xeki"></h1>
     </nav>
     <p id="demo"></p>
@@ -248,7 +248,7 @@
 
 
 </main>
-<footer class="container">
+<footer class="container" id="foot">
     <ul class="ful row">
         <li class="flist col-3"><img class="focon" src="images/icons/group.png"><br>隊伍</li>
         <li class="flist col-3"><img class="focon" src="images/icons/dice.png"><br>骰子</li>
@@ -261,14 +261,12 @@
 <script>
     const x = document.getElementById("demo");
     const xeki =document.getElementById("xeki");
+    const nav =document.getElementById("nav");
     const len = <%= len %> ;
     const lati = <%- JSON.stringify(latitude) %>
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
-    const north = <%- JSON.stringify(north) %>;
-    const east = <%- JSON.stringify(east) %>;
-    const south = <%- JSON.stringify(south) %>;
-    const west = <%- JSON.stringify(west) %>;
+    const bgc = <%- JSON.stringify(bgc) %>;
 
     //抓定位↓
     if (navigator.geolocation) {
@@ -295,9 +293,11 @@
             let ilatitude = lati[i];
             let ilongitude = long[i];
             let ieki = eki[i];
+            let ibgc = bgc[i];
             if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
                 if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
                     xeki.innerHTML = ieki;
+                    nav.style.background = ibgc;
                     break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";

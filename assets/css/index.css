@@ -18,6 +18,8 @@ nav{
     margin: 0;
     font-size: 40px;
     display: inline;
+    font-weight: bold;
+    -webkit-text-stroke: thin black;
 }
 #demo , #reload{
     display: inline;
@@ -35,7 +37,7 @@ footer{
     bottom: 0!important;
     width: 100%;
     padding: 0!important;
-    background-color: #0088d6;
+    background-color: purple;
 }
 
 .ful{
@@ -51,6 +53,8 @@ footer{
     height: auto;
     color: white;
     font-size: 16px;
+    font-weight: bold;
+    -webkit-text-stroke: thin black;
 }
 .focon{
     width: 32px;
