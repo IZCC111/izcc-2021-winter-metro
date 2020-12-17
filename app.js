@@ -10,6 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/node_modules',express.static(path.join(__dirname,'node_modules')))
 
 
 const client = new google.auth.JWT(
@@ -66,16 +67,21 @@ async function gsrun(cl) {
         let long = await gsapi.spreadsheets.values.get(optlong);
         let eki = await gsapi.spreadsheets.values.get(opteki);
         let bgc = await gsapi.spreadsheets.values.get(optbgc);
+        let topic = await gsapi.spreadsheets.values.get(opttopic);
+        let teki = await gsapi.spreadsheets.values.get(optteki);
 
         let latiArray = [];
         let longArray = [];
         let ekiArray = [];
         let bgcArray = [];
+        let tekiArray =[],topicArray=[]
         for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
+            tekiArray[i]= teki.data.values[i][0];
+            topicArray[i]=topic.data.values[i][0];
         }
         res.render('index', {
             latitude: latiArray,
@@ -83,21 +89,12 @@ async function gsrun(cl) {
             len: latiArray.length,
             eki: ekiArray,
             bgc: bgcArray,
+            teki:tekiArray,
+            topic:topicArray
         });
     });
-    app.get('/map',async (req, res) => {
-        let topic = await gsapi.spreadsheets.values.get(opttopic);
-        let teki = await gsapi.spreadsheets.values.get(optteki);
-        let map={tekiArray:[],topicArray:[]}
-        for (let i = 0; i < teki.data.values.length; i++) {
-            map.tekiArray[i] = teki.data.values[i][0];
-            map.topicArray[i] = topic.data.values[i][0];
-        }
-        res.send(map)
 
-    })
-
-};
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
