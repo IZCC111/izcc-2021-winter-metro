@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -171,7 +169,7 @@
               style="outline:none;" target="_self"/>
         <area alt="" title="南京三民" data-toggle="modal" data-target="#Nanjing-Sanmin" shape="rect" coords="675,635,743,690"
               style="outline:none;" target="_self"/>
-        <area alt="" title="ˊ中山國中" data-toggle="modal" data-target="#Zhongshan-Junior-High-School" shape="rect" coords="583,592,686,630"
+        <area alt="" title="中山國中" data-toggle="modal" data-target="#Zhongshan-Junior-High-School" shape="rect" coords="583,592,686,630"
               style="outline:none;" target="_self"/>
         <area alt="" title="松山機場" data-toggle="modal" data-target="#Songshan-Airport" shape="rect" coords="562,556,678,584"
               style="outline:none;" target="_self"/>
@@ -198,7 +196,7 @@
         <area alt="" title="民權西路" data-toggle="modal" data-target="#Minquan-W.-Rd." shape="poly"
               coords="461,541,463,558,442,558,440,570,432,570,431,581,419,579,417,600,373,602,375,542"
               style="outline:none;" target="_self"/>
-        <area alt="" title="ˊ中山國小" data-toggle="modal" data-target="#Zhongshan-Elementary-School" shape="poly"
+        <area alt="" title="中山國小" data-toggle="modal" data-target="#Zhongshan-Elementary-School" shape="poly"
               coords="472,548,471,572,451,574,452,598,478,599,480,585,548,584,549,570,530,570,530,549"
               style="outline:none;" target="_self"/>
         <area alt="" title="松江南京" data-toggle="modal" data-target="#Songjiang-Nanjing" shape="poly"
@@ -244,7 +242,9 @@
               coords="604,630.0000152587891,600,658.0000152587891,569,662.0000152587891,569,692.0000152587891,615,694.0000152587891,620,669.0000152587891,638,666.0000152587891,641,653.0000152587891,661,648.0000152587891,665,630.0000152587891"
               style="outline:none;" target="_self"/>
     </map>
-    <%- include ('./model/models.ejs') %>
+    <div id="map-model">
+
+    </div>
 
 
 </main>
@@ -274,6 +274,38 @@
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    const arr=["Tamsui", "Hongshulin", "Zhuwei", "Guandu", "Zhongyi", "Fuxinggang", "Beitou", "Qiyan", "Qilian", "Shipai", "Mingde", "Zhishan", "Shilin", "Jiantan", "Yuanshan", "Daqiaotou", "Taipei-Bridge", "Cailiao", "Sanchong", "Xianse-Temple", "Touqianzhuang", "Xinzhuang", "Fu-Jen-University", "Danfeng", "Huilong", "Xingtian-Temple", "Shuanglian", "Beimen", "Ximen", "Longshan-Temple", "Jiangzicui", "Xinpu", "Banqiao", "Fuzhong", "Far-Eastern-Hospital", "Zhongxiao-Xinsheng", "NTU-Hospital", "Xiaonanmen", "Dongmen", "Guting", "Banxin", "Zhongyuan", "Qiaohe", "Dingxi", "Yongan-Market", "Zhonghe", "Nanshijiao", "Jingping", "Shisizhang", "Xindian", "Xindian-District-Office", "Qizhang", "Dapinglin", "Jingmei", "Wanlong", "Gongguan", "Taipower-Building", "Daan-Park", "Daan", "Xiangshan", "S.Y.S.-Memorial-Hall", "Houshanpi", "Kunyang", "Nangang", "Taipei-Nangang-Exhibition-Center", "Yongchun", "Songshan", "Nanjing-Sanmin", "Zhongshan-Junior-High-School", "Songshan-Airport", "Dazhi", "Jiannan-Rd.", "Xihu", "Gangqian", "Wende", "Neihu", "Dahu Park", "Huzhou", "Donghu", "Nangang-Software-Park", "Minquan-W.-Rd.", "Zhongshan-Elementary-School", "Songjiang-Nanjing", "Zhongshan", "Taipei-Main-Station", "Shandao-Temple", "C.K.S.-Memorial-Hall", "Jingan", "XiulangBridge", "Taipei-101/World-Trade-Center", "Xinyi-Anhe", "Zhongxiao-Fuxing", "Zhongxiao-Dunhua", "Taipei-Arena", "Taipei-City-Hall", "Nanjing-Fuxing"]
+    $.ajax('/map',{
+        type:"GET",
+        success:(res)=>{
+            for (let i in res.topicArray){
+                $('#map-model').append(`<div class="modal fade" id="${arr[i]}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="eki">${res.tekiArray[i]}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>題目</h5>
+                <p class="topic">${res.topicArray[i]}</p>
+                <hr>
+                <h5>Tooltips in a modal</h5>
+                <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>`)
+            }
+        }
+    })
+
 
     function getLocation() {
         if (navigator.geolocation) {

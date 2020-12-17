@@ -56,6 +56,10 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!B1:B98'
     };
+    const optteki = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'topic!A1:B98'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -67,13 +71,11 @@ async function gsrun(cl) {
         let longArray = [];
         let ekiArray = [];
         let bgcArray = [];
-        let topicArray = [];
         for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
-            topicArray[i] = topic.data.values[i][0];
         }
         res.render('index', {
             latitude: latiArray,
@@ -85,10 +87,10 @@ async function gsrun(cl) {
     });
     app.get('/map',async (req, res) => {
         let topic = await gsapi.spreadsheets.values.get(opttopic);
-        let eki = await gsapi.spreadsheets.values.get(opteki);
-        let map={ekiArray:[],topicArray:[]}
-        for (let i = 0; i < eki.data.values.length; i++) {
-            map.ekiArray[i] = eki.data.values[i][0];
+        let teki = await gsapi.spreadsheets.values.get(optteki);
+        let map={tekiArray:[],topicArray:[]}
+        for (let i = 0; i < teki.data.values.length; i++) {
+            map.tekiArray[i] = teki.data.values[i][0];
             map.topicArray[i] = topic.data.values[i][0];
         }
         res.send(map)
