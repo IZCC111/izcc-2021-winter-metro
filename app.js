@@ -80,6 +80,8 @@ async function gsrun(cl) {
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
+        }
+        for (let i = 0; i < teki.data.values.length; i++) {
             tekiArray[i]= teki.data.values[i][0];
             topicArray[i]=topic.data.values[i][0];
         }
