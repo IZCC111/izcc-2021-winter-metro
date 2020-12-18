@@ -19,7 +19,7 @@ nav{
     font-size: 40px;
     display: inline;
     font-weight: bold;
-    -webkit-text-stroke: thin black;
+    font-family: '華康新特明體(P)';
 }
 #demo , #reload{
     display: inline;
