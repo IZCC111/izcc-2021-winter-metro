@@ -309,7 +309,8 @@
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        xeki.innerHTML = "定位錯誤";
+        nav.style.backgroundColor = "gray";
     }
     const arr = ["Tamsui", "Hongshulin", "Zhuwei", "Guandu", "Zhongyi", "Fuxinggang", "Beitou", "Qiyan", "Qilian", "Shipai", "Mingde", "Zhishan", "Shilin", "Jiantan", "Yuanshan", "Daqiaotou", "Taipei-Bridge", "Cailiao", "Sanchong", "Xianse-Temple", "Touqianzhuang", "Xinzhuang", "Fu-Jen-University", "Danfeng", "Huilong", "Xingtian-Temple", "Shuanglian", "Beimen", "Ximen", "Longshan-Temple", "Jiangzicui", "Xinpu", "Banqiao", "Fuzhong", "Far-Eastern-Hospital", "Zhongxiao-Xinsheng", "NTU-Hospital", "Xiaonanmen", "Dongmen", "Guting", "Banxin", "Zhongyuan", "Qiaohe", "Dingxi", "Yongan-Market", "Zhonghe", "Nanshijiao", "Jingping", "Shisizhang", "Xindian", "Xindian-District-Office", "Qizhang", "Dapinglin", "Jingmei", "Wanlong", "Gongguan", "Taipower-Building", "Daan-Park", "Daan", "Xiangshan", "S.Y.S.-Memorial-Hall", "Houshanpi", "Kunyang", "Nangang", "Taipei-Nangang-Exhibition-Center", "Yongchun", "Songshan", "Nanjing-Sanmin", "Zhongshan-Junior-High-School", "Songshan-Airport", "Dazhi", "Jiannan-Rd.", "Xihu", "Gangqian", "Wende", "Neihu", "Dahu Park", "Huzhou", "Donghu", "Nangang-Software-Park", "Minquan-W.-Rd.", "Zhongshan-Elementary-School", "Songjiang-Nanjing", "Zhongshan", "Taipei-Main-Station", "Shandao-Temple", "C.K.S.-Memorial-Hall", "Jingan", "XiulangBridge", "Taipei-101/World-Trade-Center", "Xinyi-Anhe", "Zhongxiao-Fuxing", "Zhongxiao-Dunhua", "Taipei-Arena", "Taipei-City-Hall", "Nanjing-Fuxing"]
     for (let i in topic) {
@@ -344,7 +345,8 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition, showError);
         } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            xeki.innerHTML = "定位錯誤";
+            nav.style.backgroundColor = "gray";
         }
     }
 
@@ -366,9 +368,11 @@
                     break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";
+                    nav.style.backgroundColor = "gray";
                 }
             } else {
                 xeki.innerHTML = "無鄰近車站";
+                nav.style.backgroundColor = "gray";
             }
         }
 
