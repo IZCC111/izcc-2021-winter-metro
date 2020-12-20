@@ -14,6 +14,14 @@ nav{
     color: white;
     text-align: center;
 }
+
+#ximg{
+    margin: 0;
+    display: inline;
+    line-height: 40px;
+    vertical-align: top;
+}
+
 #xeki{
     margin: 0;
     font-size: 40px;

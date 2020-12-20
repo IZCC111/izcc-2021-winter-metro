@@ -25,6 +25,7 @@
 <body>
 <header>
     <nav id="nav">
+        <img id="ximg" src="./images/000.png">
         <h1 id="xeki"></h1>
     </nav>
     <p id="demo"></p>
@@ -296,12 +297,14 @@
 <script>
     const x = document.getElementById("demo");
     const xeki = document.getElementById("xeki");
+    const ximg = document.getElementById("ximg");
     const nav = document.getElementById("nav");
     const len = <%= len %> ;
     const lati = <%- JSON.stringify(latitude) %>
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
     const bgc = <%- JSON.stringify(bgc) %>;
+    const img = <%- JSON.stringify(img) %>;
     const teki = <%- JSON.stringify(teki) %>
     const topic = <%- JSON.stringify(topic) %>
 
@@ -310,6 +313,7 @@
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
         xeki.innerHTML = "定位錯誤";
+        ximg.src = "./images/000.png";
         nav.style.backgroundColor = "gray";
     }
     const arr = ["Tamsui", "Hongshulin", "Zhuwei", "Guandu", "Zhongyi", "Fuxinggang", "Beitou", "Qiyan", "Qilian", "Shipai", "Mingde", "Zhishan", "Shilin", "Jiantan", "Yuanshan", "Daqiaotou", "Taipei-Bridge", "Cailiao", "Sanchong", "Xianse-Temple", "Touqianzhuang", "Xinzhuang", "Fu-Jen-University", "Danfeng", "Huilong", "Xingtian-Temple", "Shuanglian", "Beimen", "Ximen", "Longshan-Temple", "Jiangzicui", "Xinpu", "Banqiao", "Fuzhong", "Far-Eastern-Hospital", "Zhongxiao-Xinsheng", "NTU-Hospital", "Xiaonanmen", "Dongmen", "Guting", "Banxin", "Zhongyuan", "Qiaohe", "Dingxi", "Yongan-Market", "Zhonghe", "Nanshijiao", "Jingping", "Shisizhang", "Xindian", "Xindian-District-Office", "Qizhang", "Dapinglin", "Jingmei", "Wanlong", "Gongguan", "Taipower-Building", "Daan-Park", "Daan", "Xiangshan", "S.Y.S.-Memorial-Hall", "Houshanpi", "Kunyang", "Nangang", "Taipei-Nangang-Exhibition-Center", "Yongchun", "Songshan", "Nanjing-Sanmin", "Zhongshan-Junior-High-School", "Songshan-Airport", "Dazhi", "Jiannan-Rd.", "Xihu", "Gangqian", "Wende", "Neihu", "Dahu Park", "Huzhou", "Donghu", "Nangang-Software-Park", "Minquan-W.-Rd.", "Zhongshan-Elementary-School", "Songjiang-Nanjing", "Zhongshan", "Taipei-Main-Station", "Shandao-Temple", "C.K.S.-Memorial-Hall", "Jingan", "XiulangBridge", "Taipei-101/World-Trade-Center", "Xinyi-Anhe", "Zhongxiao-Fuxing", "Zhongxiao-Dunhua", "Taipei-Arena", "Taipei-City-Hall", "Nanjing-Fuxing"]
@@ -346,6 +350,7 @@
             navigator.geolocation.getCurrentPosition(showPosition, showError);
         } else {
             xeki.innerHTML = "定位錯誤";
+            ximg.src = "./images/000.png";
             nav.style.backgroundColor = "gray";
         }
     }
@@ -361,17 +366,21 @@
             let ilongitude = long[i];
             let ieki = eki[i];
             let ibgc = bgc[i];
+            let iimg = img[i];
             if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
                 if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
                     xeki.innerHTML = ieki;
+                    ximg.src = iimg;
                     nav.style.background = ibgc;
                     break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";
+                    ximg.src = "./images/000.png";
                     nav.style.backgroundColor = "gray";
                 }
             } else {
                 xeki.innerHTML = "無鄰近車站";
+                ximg.src = "./images/000.png";
                 nav.style.backgroundColor = "gray";
             }
         }
@@ -383,16 +392,24 @@
     function showError(error) {
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                x.innerHTML = "User denied the request for Geolocation."
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
                 break;
             case error.POSITION_UNAVAILABLE:
-                x.innerHTML = "Location information is unavailable."
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
                 break;
             case error.TIMEOUT:
-                x.innerHTML = "The request to get user location timed out."
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
                 break;
             case error.UNKNOWN_ERROR:
-                x.innerHTML = "An unknown error occurred."
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
                 break;
         }
     }

@@ -53,6 +53,10 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'coordinates!D1:D98'
     };
+    const optimg = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'coordinates!E1:E98'
+    };
     const opttopic = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!B1:B98'
@@ -67,6 +71,7 @@ async function gsrun(cl) {
         let long = await gsapi.spreadsheets.values.get(optlong);
         let eki = await gsapi.spreadsheets.values.get(opteki);
         let bgc = await gsapi.spreadsheets.values.get(optbgc);
+        let img = await gsapi.spreadsheets.values.get(optimg);
         let topic = await gsapi.spreadsheets.values.get(opttopic);
         let teki = await gsapi.spreadsheets.values.get(optteki);
 
@@ -74,12 +79,14 @@ async function gsrun(cl) {
         let longArray = [];
         let ekiArray = [];
         let bgcArray = [];
+        let imgArray = [];
         let tekiArray =[],topicArray=[]
         for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
+            imgArray[i] = bgc.data.values[i][0];
         }
         for (let i = 0; i < teki.data.values.length; i++) {
             tekiArray[i]= teki.data.values[i][0];
@@ -91,6 +98,7 @@ async function gsrun(cl) {
             len: latiArray.length,
             eki: ekiArray,
             bgc: bgcArray,
+            img: imgArray,
             teki:tekiArray,
             topic:topicArray
         });
