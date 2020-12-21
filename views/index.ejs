@@ -16,6 +16,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="./assets/js/jquery.rwdImageMaps.js"></script>
+    <link rel="icon" href="./images/favicon.ico">
     <script>
         $(document).ready(function (e) {
             $('img[usemap]').rwdImageMaps();
@@ -304,7 +305,7 @@
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
     const bgc = <%- JSON.stringify(bgc) %>;
-    const img = <%= img %>;
+    const img = <%- JSON.stringify(img) %>;
     const teki = <%- JSON.stringify(teki) %>
     const topic = <%- JSON.stringify(topic) %>
 
