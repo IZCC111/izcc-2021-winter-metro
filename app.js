@@ -39,31 +39,31 @@ async function gsrun(cl) {
 
     const optlati = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'coordinates!B1:B98'
+        range: 'coordinates!B1:B100'
     };
     const optlong = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'coordinates!C1:C98'
+        range: 'coordinates!C1:C100'
     };
     const opteki = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'coordinates!A1:A98'
+        range: 'coordinates!A1:A100'
     };
     const optbgc = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'coordinates!D1:D98'
+        range: 'coordinates!D1:D100'
     };
     const optimg = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'coordinates!E1:E98'
+        range: 'coordinates!E1:E100'
     };
     const opttopic = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'topic!B1:B98'
+        range: 'topic!B1:B100'
     };
     const optteki = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'topic!A1:B98'
+        range: 'topic!A1:B100'
     };
 
     app.get('/', async function (req, res) {
