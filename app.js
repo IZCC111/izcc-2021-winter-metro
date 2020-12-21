@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 
 
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -105,6 +106,10 @@ async function gsrun(cl) {
     });
 
 }
+
+app.get('/teams', (req, res) => {
+    res.render('teams');
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));

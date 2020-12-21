@@ -1,60 +1,66 @@
-body{
+body {
     margin: 0;
 }
-header{
+
+header {
     top: 0;
     position: fixed;
     display: block;
     width: 100%;
     background-color: white;
 }
-nav{
+
+nav {
     background-color: gray;
     height: auto;
     color: white;
     text-align: center;
 }
 
-#ximg{
+#ximg {
     margin: 0;
     display: inline;
     line-height: 40px;
     vertical-align: top;
 }
 
-#xeki{
+#xeki {
     margin: 0;
     font-size: 40px;
     display: inline;
     font-weight: bold;
     font-family: '華康新特明體(P)';
 }
-#demo , #reload{
+
+#demo, #reload {
     display: inline;
     font-size: 10px;
 }
-#Image-Maps{
+
+#Image-Maps {
     width: 100%;
 }
-main{
+
+main {
     margin-top: 80px;
 }
-footer{
+
+footer {
     display: block;
     position: fixed;
-    bottom: 0!important;
+    bottom: 0 !important;
     width: 100%;
-    padding: 0!important;
+    padding: 0 !important;
     background-color: purple;
 }
 
-.ful{
+.ful {
     width: 100%;
     padding: 0;
-    margin: 0!important;
+    margin: 0 !important;
 }
 
-.flist{
+.flist {
     list-style: none;
     display: inline;
     text-align: center;
@@ -64,7 +70,30 @@ footer{
     font-weight: bold;
     -webkit-text-stroke: thin black;
 }
-.focon{
+
+.flist:active {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    height: auto;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-text-stroke: thin black;
+}
+
+.flist:hover {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    height: auto;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-text-stroke: thin black;
+}
+
+.focon {
     width: 32px;
     height: 32px;
 }
