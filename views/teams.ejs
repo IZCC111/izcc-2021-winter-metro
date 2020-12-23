@@ -25,15 +25,98 @@
 </head>
 <body>
 <header>
+    <nav id="nav">
+        <h1 id="xeki">各隊動態</h1>
+    </nav>
+    <p id="demo"></p>
+    <button id="reload" onclick="getLocation()">重新定位</button>
 </header>
 <main>
+    <div class="container">
+        <div class="row">
+            <p class="team col-6"><b>隊伍</b></p>
+            <p class="teameki col-3"><b>位置</b></p>
+            <p class="teampoint col-3"><b>分數</b></p>
+            <%for(let i=0;i<4;i++){%>
+            <p class="team col-6"><%=team[i]%></p>
+            <p class="teameki col-3"><%=teameki[i]%></p>
+            <p class="teampoint col-3"><%=teampoint[i]%></p>
+            <%}%>
+        </div>
+    </div>
 </main>
 <footer class="container" id="foot">
     <ul class="ful row">
         <li class="flist col-12"><a class="flist" href="/"><img class="focon" src="images/icons/home.png"><br>回首頁</a></li>
     </ul>
 </footer>
-</script>
+<script>
+    const x = document.getElementById("demo");
+    const nav = document.getElementById("nav");
+    const len = <%= len %> ;
+    const lati = <%- JSON.stringify(latitude) %>
+    const long = <%- JSON.stringify(longitude) %>;
+    const bgc = <%- JSON.stringify(bgc) %>;
+    //抓定位↓
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        nav.style.backgroundColor = "gray";
+    }
 
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            nav.style.backgroundColor = "gray";
+        }
+    }
+
+    function showPosition(position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        x.innerHTML = "LAT: " + latitude +
+            ", LONG: " + longitude;
+
+        for (let i = 0; i < len; i++) {
+            let ilatitude = lati[i];
+            let ilongitude = long[i];
+            let ibgc = bgc[i];
+            if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
+                if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
+                    nav.style.background = ibgc;
+                    break;
+                } else {
+                    nav.style.backgroundColor = "gray";
+                }
+            } else {
+                nav.style.backgroundColor = "gray";
+            }
+        }
+
+
+    }
+
+
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.TIMEOUT:
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.UNKNOWN_ERROR:
+                nav.style.backgroundColor = "gray";
+                break;
+        }
+    }
+
+    //抓定位↑
+</script>
 </body>
 </html>

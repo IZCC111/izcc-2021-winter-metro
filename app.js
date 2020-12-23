@@ -66,6 +66,18 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!A1:B100'
     };
+    const optteam = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B1:E1'
+    };
+    const optteameki = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B2:E2'
+    };
+    const optteampoint = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B3:E3'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -105,11 +117,42 @@ async function gsrun(cl) {
         });
     });
 
+    app.get('/teams', async function (req, res) {
+        let lati = await gsapi.spreadsheets.values.get(optlati);
+        let long = await gsapi.spreadsheets.values.get(optlong);
+        let bgc = await gsapi.spreadsheets.values.get(optbgc);
+        let team = await gsapi.spreadsheets.values.get(optteam);
+        let teameki = await gsapi.spreadsheets.values.get(optteameki);
+        let teampoint = await gsapi.spreadsheets.values.get(optteampoint);
+
+        let latiArray = [];
+        let longArray = [];
+        let bgcArray = [];
+        let teamArray = [];
+        let teamekiArray = [];
+        let teampointArray = [];
+        for (let i = 0; i < lati.data.values.length; i++) {
+            latiArray[i] = lati.data.values[i][0];
+            longArray[i] = long.data.values[i][0];
+            bgcArray[i] = bgc.data.values[i][0];
+            teamArray[i] = team.data.values[0][i];
+            teamekiArray[i] = teameki.data.values[0][i];
+            teampointArray[i] = teampoint.data.values[0][i];
+        }
+        res.render('teams', {
+            latitude: latiArray,
+            len: latiArray.length,
+            longitude: longArray,
+            bgc: bgcArray,
+            team: teamArray,
+            teameki: teamekiArray,
+            teampoint: teampointArray
+        });
+    });
+
 }
 
-app.get('/teams', (req, res) => {
-    res.render('teams');
-});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
