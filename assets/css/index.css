@@ -29,7 +29,7 @@ nav {
     font-size: 40px;
     display: inline;
     font-weight: bold;
-    font-family: '華康新特明體(P)';
+    font-family: '華康新特明體(P)', serif;
 }
 
 #demo, #reload {
@@ -49,7 +49,7 @@ footer {
     display: block;
     position: fixed;
     bottom: 0 !important;
-    width: 100%!important;
+    width: 100% !important;
     padding: 0 !important;
     background-color: purple;
 }

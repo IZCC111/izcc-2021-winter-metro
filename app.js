@@ -148,7 +148,8 @@ async function gsrun(cl) {
                     res.redirect('/');
                     //token過期判斷
                 }
-            })}
+            })
+        }
         let tusernameArray = [];
         let latiArray = [];
         let longArray = [];
@@ -170,12 +171,12 @@ async function gsrun(cl) {
             teamekiArray[i] = teameki.data.values[0][i];
             teampointArray[i] = teampoint.data.values[0][i];
         }
-        if(cookietoken){
+        if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
-            for (let i = 0; i<4; i++){
-                if(tokenusername === tusernameArray[i]){
+            for (let i = 0; i < 4; i++) {
+                if (tokenusername === tusernameArray[i]) {
                     nowteam = teamArray[i];
                 }
             }
@@ -231,12 +232,12 @@ async function gsrun(cl) {
         for (let i = 0; i < 4; i++) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
-        if(cookietoken){
+        if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
-            for (let i = 0; i<4; i++){
-                if(tokenusername === tusernameArray[i]){
+            for (let i = 0; i < 4; i++) {
+                if (tokenusername === tusernameArray[i]) {
                     switch (i) {
                         case 0:
                             await gsapi.spreadsheets.values.update(updeki0);
@@ -250,11 +251,12 @@ async function gsrun(cl) {
                         case 3:
                             await gsapi.spreadsheets.values.update(updekia);
                             break;
+                    }
                 }
             }
+            res.send("")
         }
-        res.send("")
-    }});
+    });
 
     app.post('/logout', function (req, res) {
         res.clearCookie('token');
@@ -267,7 +269,7 @@ async function gsrun(cl) {
         let password = await gsapi.spreadsheets.values.get(optpassword);
         let usernameArray = [];
         let passwordArray = [];
-        for(let i=0;i<4;i++){
+        for (let i = 0; i < 4; i++) {
             usernameArray[i] = username.data.values[0][i];
             passwordArray[i] = password.data.values[0][i];
         }
