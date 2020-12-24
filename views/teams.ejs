@@ -34,12 +34,12 @@
 <main>
     <div class="container">
         <div class="row">
-            <p class="team col-6"><b>隊伍</b></p>
-            <p class="teameki col-3"><b>位置</b></p>
+            <p class="team col-4"><b>隊伍</b></p>
+            <p class="teameki col-5"><b>位置</b></p>
             <p class="teampoint col-3"><b>分數</b></p>
             <% for(let i = 0;i < 4;i++){ %>
-            <p class="team col-6"><%= team[i] %></p>
-            <p class="teameki col-3"><%= teameki[i] %></p>
+            <p class="team col-4"><%= team[i] %></p>
+            <p class="teameki col-5"><%= teameki[i] %></p>
             <p class="teampoint col-3"><%= teampoint[i] %></p>
             <% } %>
         </div>
@@ -88,6 +88,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </main>
 <footer class="container" id="foot">
     <ul class="ful row">
@@ -145,6 +146,7 @@
                             console.log('text status ' + textStatus + ', err ' + err)
                         }
                     })
+                    location.reload();
                     break;
                 } else {
                     nav.style.backgroundColor = "gray";
