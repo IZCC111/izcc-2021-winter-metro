@@ -375,6 +375,18 @@
                     xeki.innerHTML = ieki;
                     ximg.src = iimg;
                     nav.style.background = ibgc;
+                        $.ajax({
+                            url: '/nowieki',
+                            type: 'POST',
+                            cache: false,
+                            data: { noweki: ieki },
+                            success: function(data){
+                                console.log('Success!')
+                            },
+                            error: function(jqXHR, textStatus, err){
+                                console.log('text status '+textStatus+', err '+err)
+                            }
+                        })
                     break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";

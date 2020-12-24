@@ -44,6 +44,43 @@
             <%}%>
         </div>
     </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <h3 class="col-12" style="text-align: center">我的小隊:</h3>
+            <br>
+            <h1 class="col-12" style="text-align: center"><%=nowteam%></h1>
+            <br>
+            <button type="button" class="btn btn-primary" style="display:<%=btnin%>;margin: 0 20%;width: 60%;" data-toggle="modal" data-target="#loginModal">登入</button>
+            <button type="button" class="btn btn-primary" style="display:<%=btnout%>;margin: 0 20%;width: 60%;" onclick="logout()">登出</button>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered  " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-title text-center">
+                                <h4>Login</h4>
+                            </div>
+                            <div class="d-flex flex-column text-center">
+                                <form method="post" action="/login">
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control" id="email1" placeholder="Your username...">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control" id="password1" placeholder="Your password...">
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-block btn-round">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </main>
 <footer class="container" id="foot">
     <ul class="ful row">
@@ -56,6 +93,7 @@
     const len = <%= len %> ;
     const lati = <%- JSON.stringify(latitude) %>
     const long = <%- JSON.stringify(longitude) %>;
+    const eki = <%- JSON.stringify(eki) %>;
     const bgc = <%- JSON.stringify(bgc) %>;
     //抓定位↓
     if (navigator.geolocation) {
@@ -82,10 +120,23 @@
         for (let i = 0; i < len; i++) {
             let ilatitude = lati[i];
             let ilongitude = long[i];
+            let ieki = eki[i];
             let ibgc = bgc[i];
             if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
                 if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
                     nav.style.background = ibgc;
+                    $.ajax({
+                        url: '/nowieki',
+                        type: 'POST',
+                        cache: false,
+                        data: { noweki: ieki },
+                        success: function(data){
+                            console.log('Success!')
+                        },
+                        error: function(jqXHR, textStatus, err){
+                            console.log('text status '+textStatus+', err '+err)
+                        }
+                    })
                     break;
                 } else {
                     nav.style.backgroundColor = "gray";
@@ -117,6 +168,23 @@
     }
 
     //抓定位↑
+
+    function logout(){
+        $.ajax({
+            url: '/logout',
+            type: 'POST',
+            cache: false,
+            data: false,
+            success: function(data){
+                console.log('Success!')
+            },
+            error: function(jqXHR, textStatus, err){
+                console.log('text status '+textStatus+', err '+err)
+            }
+        })
+        location.reload();
+    }
+
 </script>
 </body>
 </html>
