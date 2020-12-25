@@ -112,9 +112,10 @@
     }
 
 
-    function getLocation() {
+    async function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
+            await navigator.geolocation.getCurrentPosition(showPosition, showError);
+            location.reload();
         } else {
             nav.style.backgroundColor = "gray";
         }
@@ -146,7 +147,6 @@
                             console.log('text status ' + textStatus + ', err ' + err)
                         }
                     })
-                    location.reload();
                     break;
                 } else {
                     nav.style.backgroundColor = "gray";
