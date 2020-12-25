@@ -91,6 +91,26 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!B5:E5'
     };
+    const optpropsname = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!A6:A16'
+    };
+    const optpropsq0 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B6:B16'
+    };
+    const optpropsq1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!C6:C16'
+    };
+    const optpropsq2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!D6:D16'
+    };
+    const optpropsqa = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!E6:E16'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -161,8 +181,10 @@ async function gsrun(cl) {
         var nowteam = "未登入";
         var btnin = "block";
         var btnout = "none"
-        for (let i = 0; i < lati.data.values.length; i++) {
+        for (let i = 0; i < tusername.data.values[0].length; i++) {
             tusernameArray[i] = tusername.data.values[0][i];
+        }
+        for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
@@ -175,7 +197,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < tusername.data.values[0].length; i++) {
                 if (tokenusername === tusernameArray[i]) {
                     nowteam = teamArray[i];
                 }
@@ -229,14 +251,14 @@ async function gsrun(cl) {
         }
         let tusername = await gsapi.spreadsheets.values.get(optusername);
         let tusernameArray = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < tusername.data.values[0].length; i++) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < tusername.data.values[0].length; i++) {
                 if (tokenusername === tusernameArray[i]) {
                     switch (i) {
                         case 0:
@@ -269,13 +291,13 @@ async function gsrun(cl) {
         let password = await gsapi.spreadsheets.values.get(optpassword);
         let usernameArray = [];
         let passwordArray = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < username.data.values[0].length; i++) {
             usernameArray[i] = username.data.values[0][i];
             passwordArray[i] = password.data.values[0][i];
         }
         var iusername = req.body.username;
         var ipassword = req.body.password;
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < username.data.values[0].length; i++) {
             if (iusername === usernameArray[i]) {
                 if (ipassword === passwordArray[i]) {
                     var token = jwt.sign({username: iusername}, SECRET, {expiresIn: '1h'});
@@ -287,6 +309,84 @@ async function gsrun(cl) {
             }
         }
     });
+
+    app.get('/props', async function (req, res) {
+        let lati = await gsapi.spreadsheets.values.get(optlati);
+        let long = await gsapi.spreadsheets.values.get(optlong);
+        let eki = await gsapi.spreadsheets.values.get(opteki);
+        let bgc = await gsapi.spreadsheets.values.get(optbgc);
+        let pname = await gsapi.spreadsheets.values.get(optpropsname);
+        let pquan0 = await gsapi.spreadsheets.values.get(optpropsq0);
+        let pquan1 = await gsapi.spreadsheets.values.get(optpropsq1);
+        let pquan2 = await gsapi.spreadsheets.values.get(optpropsq2);
+        let pquana = await gsapi.spreadsheets.values.get(optpropsqa);
+        let tusername = await gsapi.spreadsheets.values.get(optusername);
+        let latiArray = [];
+        let longArray = [];
+        let ekiArray = [];
+        let bgcArray = [];
+        let pnameArray = [];
+        let pquan0Array = [];
+        let pquan1Array = [];
+        let pquan2Array = [];
+        let pquanaArray = [];
+        let tuserArray = [];
+        for (let i = 0; i < lati.data.values.length; i++) {
+            latiArray[i] = lati.data.values[i][0];
+            longArray[i] = long.data.values[i][0];
+            ekiArray[i] = eki.data.values[i][0];
+            bgcArray[i] = bgc.data.values[i][0];
+        }
+        for (let i =0; i<pname.data.values.length; i++){
+            pnameArray[i] = pname.data.values[i][0];
+            pquan0Array[i] = pquan0.data.values[i][0];
+            pquan1Array[i] = pquan1.data.values[i][0];
+            pquan2Array[i] = pquan2.data.values[i][0];
+            pquanaArray[i] = pquana.data.values[i][0];
+            tuserArray[i] = tusername.data.values[0][i];
+        }
+        let cookietoken = req.cookies.token;
+        if (cookietoken) {
+            var detoken = jwt.verify(cookietoken, SECRET);
+            tokenusername = detoken.username;
+            console.log(tokenusername);
+            for (let i = 0; i < tusername.data.values[0].length; i++) {
+                if (tokenusername === tusernameArray[i]) {
+                    switch (i) {
+                        case 0:
+                            var pquanArray = pquan0Array;
+                            break;
+                        case 1:
+                            var pquanArray = pquan1Array;
+                            break;
+                        case 2:
+                            var pquanArray = pquan2Array;
+                            break;
+                        case 3:
+                            var pquanArray = pquanaArray;
+                            break;
+                    }
+                }
+            }
+        } else{
+            res.render('props', {
+                latitude: latiArray,
+                len: latiArray.length,
+                longitude: longArray,
+                eki: ekiArray,
+                bgc: bgcArray,
+                pname: [],
+                pquan: []
+        })};
+        res.render('props', {
+            latitude: latiArray,
+            len: latiArray.length,
+            longitude: longArray,
+            eki: ekiArray,
+            bgc: bgcArray,
+            pname: pnameArray,
+            pquan:　pquanArray
+        })});
 }
 
 
