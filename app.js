@@ -311,32 +311,43 @@ async function gsrun(cl) {
     });
 
     app.get('/props', async function (req, res) {
+        let cookietoken = req.cookies.token;
         let lati = await gsapi.spreadsheets.values.get(optlati);
         let long = await gsapi.spreadsheets.values.get(optlong);
         let eki = await gsapi.spreadsheets.values.get(opteki);
         let bgc = await gsapi.spreadsheets.values.get(optbgc);
-        let pname = await gsapi.spreadsheets.values.get(optpropsname);
-        let pquan0 = await gsapi.spreadsheets.values.get(optpropsq0);
-        let pquan1 = await gsapi.spreadsheets.values.get(optpropsq1);
-        let pquan2 = await gsapi.spreadsheets.values.get(optpropsq2);
-        let pquana = await gsapi.spreadsheets.values.get(optpropsqa);
-        let tusername = await gsapi.spreadsheets.values.get(optusername);
         let latiArray = [];
         let longArray = [];
         let ekiArray = [];
         let bgcArray = [];
-        let pnameArray = [];
-        let pquan0Array = [];
-        let pquan1Array = [];
-        let pquan2Array = [];
-        let pquanaArray = [];
-        let tuserArray = [];
         for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
         }
+        if (!cookietoken){
+            res.render('plzLogin', {
+                latitude: latiArray,
+                len: latiArray.length,
+                longitude: longArray,
+                eki: ekiArray,
+                bgc: bgcArray,
+            })
+        }
+        else{
+            let pname = await gsapi.spreadsheets.values.get(optpropsname);
+            let pquan0 = await gsapi.spreadsheets.values.get(optpropsq0);
+            let pquan1 = await gsapi.spreadsheets.values.get(optpropsq1);
+            let pquan2 = await gsapi.spreadsheets.values.get(optpropsq2);
+            let pquana = await gsapi.spreadsheets.values.get(optpropsqa);
+            let tusername = await gsapi.spreadsheets.values.get(optusername);
+            let pnameArray = [];
+            let pquan0Array = [];
+            let pquan1Array = [];
+            let pquan2Array = [];
+            let pquanaArray = [];
+            let tuserArray = [];
         for (let i =0; i<pname.data.values.length; i++){
             pnameArray[i] = pname.data.values[i][0];
             pquan0Array[i] = pquan0.data.values[i][0];
@@ -345,8 +356,6 @@ async function gsrun(cl) {
             pquanaArray[i] = pquana.data.values[i][0];
             tuserArray[i] = tusername.data.values[0][i];
         }
-        let cookietoken = req.cookies.token;
-        if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
@@ -354,39 +363,53 @@ async function gsrun(cl) {
                 if (tokenusername === tusernameArray[i]) {
                     switch (i) {
                         case 0:
-                            var pquanArray = pquan0Array;
+                            res.render('props', {
+                                latitude: latiArray,
+                                len: latiArray.length,
+                                longitude: longArray,
+                                eki: ekiArray,
+                                bgc: bgcArray,
+                                pname: pnameArray,
+                                pquan:　pquan0Array
+                            })
                             break;
                         case 1:
-                            var pquanArray = pquan1Array;
+                            res.render('props', {
+                                latitude: latiArray,
+                                len: latiArray.length,
+                                longitude: longArray,
+                                eki: ekiArray,
+                                bgc: bgcArray,
+                                pname: pnameArray,
+                                pquan:　pquan2Array
+                            })
                             break;
                         case 2:
-                            var pquanArray = pquan2Array;
+                            res.render('props', {
+                                latitude: latiArray,
+                                len: latiArray.length,
+                                longitude: longArray,
+                                eki: ekiArray,
+                                bgc: bgcArray,
+                                pname: pnameArray,
+                                pquan:　pquan3Array
+                            })
                             break;
                         case 3:
-                            var pquanArray = pquanaArray;
+                            res.render('props', {
+                                latitude: latiArray,
+                                len: latiArray.length,
+                                longitude: longArray,
+                                eki: ekiArray,
+                                bgc: bgcArray,
+                                pname: pnameArray,
+                                pquan:　pquanaArray
+                            })
                             break;
                     }
                 }
             }
-        } else{
-            res.render('props', {
-                latitude: latiArray,
-                len: latiArray.length,
-                longitude: longArray,
-                eki: ekiArray,
-                bgc: bgcArray,
-                pname: [],
-                pquan: []
-        })};
-        res.render('props', {
-            latitude: latiArray,
-            len: latiArray.length,
-            longitude: longArray,
-            eki: ekiArray,
-            bgc: bgcArray,
-            pname: pnameArray,
-            pquan:　pquanArray
-        })});
+        }});
 }
 
 

@@ -15,32 +15,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="./assets/js/jquery.rwdImageMaps.js"></script>
     <link rel="icon" href="./images/favicon.ico">
+    <script>
+        $(document).ready(function (e) {
+            $('img[usemap]').rwdImageMaps();
+        });
+    </script>
 </head>
 <body>
 <header>
     <nav id="nav">
-        <h1 id="xeki">道具</h1>
+        <h1 id="xeki">請先登入</h1>
     </nav>
     <p id="demo"></p>
     <button id="reload" onclick="getLocation()">重新定位</button>
 </header>
-<main class="container" style="text-align: center;">
-    <div class="row">
-        <p class="col-5"><b>道具名稱</b></p>
-        <p class="col-3"><b>數量</b></p>
-        <p class="col-4"><b>使用</b></p>
-    </div>
-    <% for (let i = 0;i < pname.length;i++){ %>
-    <div class="row">
-        <p class="col-5" style="margin: 0"><%= pname[i] %></p>
-        <p class="col-3" style="margin: 0"><%= pquan[i] %></p>
-        <button class="btn-primary col-4">道具不足</button>
-    </div>
-    <% } %>
+<main>
+    <h1 style="height: 100%;margin: 40% 0;text-align: center">ERROR 401<br>請先登入</h1>
 </main>
-
-
+<footer class="container" id="foot">
+    <ul class="ful row">
+        <li class="flist col-12"><a class="flist" href="/"><img class="focon" src="images/icons/home.png"><br>回首頁</a>
+        </li>
+    </ul>
+</footer>
 <script>
     const x = document.getElementById("demo");
     const nav = document.getElementById("nav");
@@ -49,7 +48,6 @@
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
     const bgc = <%- JSON.stringify(bgc) %>;
-
     //抓定位↓
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -58,9 +56,10 @@
     }
 
 
-    function getLocation() {
+    async function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
+            await navigator.geolocation.getCurrentPosition(showPosition, showError);
+            location.reload();
         } else {
             nav.style.backgroundColor = "gray";
         }
@@ -123,12 +122,8 @@
     }
 
     //抓定位↑
+
+
 </script>
-<footer class="container" id="foot">
-    <ul class="ful row">
-        <li class="flist col-12"><a class="flist" href="/"><img class="focon" src="images/icons/home.png"><br>回首頁</a>
-        </li>
-    </ul>
-</footer>
 </body>
 </html>
