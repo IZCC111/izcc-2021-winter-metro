@@ -265,6 +265,7 @@
 
     </div>
 
+
     <div class="modal fade" id="spin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -342,13 +343,21 @@
                 <h5>擁有者:</h5>
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick="verifyeki(${i})">完成關卡</button>
             </div>
         </div>
     </div>
 </div>`)
 
+    }
+
+    function verifyeki(i){
+        if (confirm("確定完成?") == true) {
+            alert(i);
+        } else {
+            userPreference = "Save Cancelled!";
+        }
     }
 
 
