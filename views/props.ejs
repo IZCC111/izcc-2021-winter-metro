@@ -29,15 +29,18 @@
     <div class="row">
         <p class="col-5"><b>道具名稱</b></p>
         <p class="col-3"><b>數量</b></p>
-        <p class="col-4"><b>使用</b></p>
+        <p class="col-4"><b>查看/使用</b></p>
     </div>
     <% for (let i = 0;i < pname.length;i++){ %>
     <div class="row">
         <p class="col-5" style="margin: 0"><%= pname[i] %></p>
         <p class="col-3" style="margin: 0"><%= pquan[i] %></p>
-        <button class="btn-primary col-4">道具不足</button>
+        <button class="btn-primary col-4" data-toggle="modal" data-target="#<%=pid[i]%>">查看/使用</button>
     </div>
     <% } %>
+    <div id="map-model">
+
+    </div>
 </main>
 
 
@@ -49,6 +52,10 @@
     const long = <%- JSON.stringify(longitude) %>;
     const eki = <%- JSON.stringify(eki) %>;
     const bgc = <%- JSON.stringify(bgc) %>;
+    const pname = <%- JSON.stringify(pname) %>
+    const pquan = <%- JSON.stringify(pquan) %>
+    const pid = <%- JSON.stringify(pid) %>
+    const ptopic = <%- JSON.stringify(ptopic) %>
 
     //抓定位↓
     if (navigator.geolocation) {
@@ -123,6 +130,33 @@
     }
 
     //抓定位↑
+
+
+    for (let i=0;i<pid.length;i++) {
+        $('#map-model').append(`<div class="modal fade" id="${pid[i]}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="eki">${pname[i]}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>簡介</h5>
+                <p class="topic">${ptopic[i]}</p>
+                <hr>
+                <h5>數量:${pquan[i]}</h5>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">使用</button>
+            </div>
+        </div>
+    </div>
+</div>`)
+
+    }
 </script>
 <footer class="container" id="foot">
     <ul class="ful row">

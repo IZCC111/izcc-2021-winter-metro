@@ -111,6 +111,14 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!E6:E16'
     };
+    const optpropsid = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!F6:F16'
+    };
+    const optpropstopic = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!G6:G16'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -342,12 +350,16 @@ async function gsrun(cl) {
             let pquan2 = await gsapi.spreadsheets.values.get(optpropsq2);
             let pquana = await gsapi.spreadsheets.values.get(optpropsqa);
             let tusername = await gsapi.spreadsheets.values.get(optusername);
+            let propsid = await gsapi.spreadsheets.values.get(optpropsid);
+            let propstopic = await gsapi.spreadsheets.values.get(optpropstopic);
             let pnameArray = [];
             let pquan0Array = [];
             let pquan1Array = [];
             let pquan2Array = [];
             let pquanaArray = [];
             let tuserArray = [];
+            let pidArray = [];
+            let ptopicArray = [];
         for (let i =0; i<pname.data.values.length; i++){
             pnameArray[i] = pname.data.values[i][0];
             pquan0Array[i] = pquan0.data.values[i][0];
@@ -355,12 +367,14 @@ async function gsrun(cl) {
             pquan2Array[i] = pquan2.data.values[i][0];
             pquanaArray[i] = pquana.data.values[i][0];
             tuserArray[i] = tusername.data.values[0][i];
+            pidArray[i] = propsid.data.values[i][0];
+            ptopicArray[i] = propstopic.data.values[i][0];
         }
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
-                if (tokenusername === tusernameArray[i]) {
+                if (tokenusername === tuserArray[i]) {
                     switch (i) {
                         case 0:
                             res.render('props', {
@@ -370,7 +384,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan0Array
+                                pquan:　pquan0Array,
+                                pid:　pidArray,
+                                ptopic:　ptopicArray
                             })
                             break;
                         case 1:
@@ -381,7 +397,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan2Array
+                                pquan:　pquan2Array,
+                                pid:　pidArray,
+                                ptopic:　ptopicArray
                             })
                             break;
                         case 2:
@@ -392,7 +410,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan3Array
+                                pquan:　pquan3Array,
+                                pid:　pidArray,
+                                ptopic:　ptopicArray
                             })
                             break;
                         case 3:
@@ -403,7 +423,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquanaArray
+                                pquan:　pquanaArray,
+                                pid:　pidArray,
+                                ptopic:　ptopicArray
                             })
                             break;
                     }
