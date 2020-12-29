@@ -338,7 +338,7 @@
             </div>
             <div class="modal-body">
                 <h5>題目</h5>
-                <p class="topic">${topic[i]}</p>
+                <p class="topic">距離過遠</p>
                 <hr>
                 <h5>擁有者:</h5>
                 </div>
@@ -348,28 +348,19 @@
             </div>
         </div>
     </div>
-</div>`)
+</div>
+`)
+}
 
-    }
 
     function verifyeki(i){
         if (confirm("確定完成?") == true) {
             alert(i);
-        } else {
-            userPreference = "Save Cancelled!";
         }
     }
 
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            xeki.innerHTML = "定位錯誤";
-            ximg.src = "./images/000.png";
-            nav.style.backgroundColor = "gray";
-        }
-    }
+
 
     function showPosition(position) {
         let latitude = position.coords.latitude;
@@ -400,6 +391,12 @@
                             console.log('text status ' + textStatus + ', err ' + err)
                         }
                     })
+                    for(let i=0;i<teki.length;i++){
+                        if (teki[i]===ieki){
+                            var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
+                            topicp.innerHTML = topic[i];
+                        }
+                            }
                     break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";

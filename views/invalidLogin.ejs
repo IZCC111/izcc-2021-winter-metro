@@ -26,69 +26,13 @@
 <body>
 <header>
     <nav id="nav">
-        <h1 id="xeki">各隊動態</h1>
+        <h1 id="xeki">帳號或密碼錯誤</h1>
     </nav>
     <p id="demo"></p>
     <button id="reload" onclick="getLocation()">重新定位</button>
 </header>
 <main>
-    <div class="container">
-        <div class="row">
-            <p class="team col-4"><b>隊伍</b></p>
-            <p class="teameki col-5"><b>位置</b></p>
-            <p class="teampoint col-3"><b>分數</b></p>
-            <% for(let i = 0;i < 5;i++){ %>
-            <p class="team col-4"><%= team[i] %></p>
-            <p class="teameki col-5"><%= teameki[i] %></p>
-            <p class="teampoint col-3"><%= teampoint[i] %></p>
-            <% } %>
-        </div>
-    </div>
-    <hr>
-    <div class="container">
-        <div class="row">
-            <h3 class="col-12" style="text-align: center">我的小隊:</h3>
-            <br>
-            <h1 class="col-12" style="text-align: center"><%= nowteam %></h1>
-            <br>
-            <button type="button" class="btn btn-primary" style="display:<%= btnin %>;margin: 0 20%;width: 60%;"
-                    data-toggle="modal" data-target="#loginModal">登入
-            </button>
-            <button type="button" class="btn btn-primary" style="display:<%= btnout %>;margin: 0 20%;width: 60%;"
-                    onclick="logout()">登出
-            </button>
-            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered  " role="document">
-                    <div class="modal-content">
-                        <div class="modal-header border-bottom-0">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-title text-center">
-                                <h4>Login</h4>
-                            </div>
-                            <div class="d-flex flex-column text-center">
-                                <form method="post" action="/login">
-                                    <div class="form-group">
-                                        <input type="text" name="username" class="form-control" id="email1"
-                                               placeholder="Your username...">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control" id="password1"
-                                               placeholder="Your password...">
-                                    </div>
-                                    <button type="submit" class="btn btn-info btn-block btn-round">Login</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1 style="height: 100%;margin: 40% 0;text-align: center">ERROR 401<br>帳號或密碼錯誤</h1>
 </main>
 <footer class="container" id="foot">
     <ul class="ful row">
@@ -179,21 +123,6 @@
 
     //抓定位↑
 
-    function logout() {
-        $.ajax({
-            url: '/logout',
-            type: 'POST',
-            cache: false,
-            data: false,
-            success: function (data) {
-                console.log('Success!')
-            },
-            error: function (jqXHR, textStatus, err) {
-                console.log('text status ' + textStatus + ', err ' + err)
-            }
-        })
-        location.reload();
-    }
 
 </script>
 </body>

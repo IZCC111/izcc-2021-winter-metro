@@ -73,23 +73,23 @@ async function gsrun(cl) {
     };
     const optteam = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'team!B1:E1'
+        range: 'team!B1:F1'
     };
     const optteameki = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'team!B2:E2'
+        range: 'team!B2:F2'
     };
     const optteampoint = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'team!B3:E3'
+        range: 'team!B3:F3'
     };
     const optusername = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'team!B4:E4'
+        range: 'team!B4:F4'
     };
     const optpassword = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'team!B5:E5'
+        range: 'team!B5:F5'
     };
     const optpropsname = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
@@ -107,17 +107,21 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!D6:D16'
     };
-    const optpropsqa = {
+    const optpropsq3 = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!E6:E16'
     };
-    const optpropsid = {
+    const optpropsqa = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!F6:F16'
     };
-    const optpropstopic = {
+    const optpropsid = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!G6:G16'
+    };
+    const optpropstopic = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!H6:H16'
     };
 
     app.get('/', async function (req, res) {
@@ -251,9 +255,15 @@ async function gsrun(cl) {
             valueInputOption: 'USER_ENTERED',
             resource: {"values": [[noweki]]}
         }
-        const updekia = {
+        const updeki3 = {
             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
             range: 'team!E2',
+            valueInputOption: 'USER_ENTERED',
+            resource: {"values": [[noweki]]}
+        }
+        const updekia = {
+            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+            range: 'team!F2',
             valueInputOption: 'USER_ENTERED',
             resource: {"values": [[noweki]]}
         }
@@ -279,6 +289,9 @@ async function gsrun(cl) {
                             await gsapi.spreadsheets.values.update(updeki2);
                             break;
                         case 3:
+                            await gsapi.spreadsheets.values.update(updeki3);
+                            break;
+                        case 4:
                             await gsapi.spreadsheets.values.update(updekia);
                             break;
                     }
@@ -297,6 +310,20 @@ async function gsrun(cl) {
         console.log(req.body);
         let username = await gsapi.spreadsheets.values.get(optusername);
         let password = await gsapi.spreadsheets.values.get(optpassword);
+        let lati = await gsapi.spreadsheets.values.get(optlati);
+        let long = await gsapi.spreadsheets.values.get(optlong);
+        let eki = await gsapi.spreadsheets.values.get(opteki);
+        let bgc = await gsapi.spreadsheets.values.get(optbgc);
+        let latiArray = [];
+        let longArray = [];
+        let ekiArray = [];
+        let bgcArray = [];
+        for (let i = 0; i < lati.data.values.length; i++) {
+            latiArray[i] = lati.data.values[i][0];
+            longArray[i] = long.data.values[i][0];
+            ekiArray[i] = eki.data.values[i][0];
+            bgcArray[i] = bgc.data.values[i][0];
+        }
         let usernameArray = [];
         let passwordArray = [];
         for (let i = 0; i < username.data.values[0].length; i++) {
@@ -305,6 +332,7 @@ async function gsrun(cl) {
         }
         var iusername = req.body.username;
         var ipassword = req.body.password;
+        let test = 0;
         for (let i = 0; i < username.data.values[0].length; i++) {
             if (iusername === usernameArray[i]) {
                 if (ipassword === passwordArray[i]) {
@@ -313,6 +341,28 @@ async function gsrun(cl) {
                     console.log(token)
                     res.cookie("token", token).redirect(req.get('referer'));
 
+                } else {
+                    test++;
+                    if (test = username.data.values[0].length) {
+                        res.render('invalidLogin', {
+                            latitude: latiArray,
+                            len: latiArray.length,
+                            longitude: longArray,
+                            eki: ekiArray,
+                            bgc: bgcArray,
+                        });
+                    }
+                }
+            } else {
+                test++;
+                if (test = username.data.values[0].length) {
+                    res.render('invalidLogin', {
+                        latitude: latiArray,
+                        len: latiArray.length,
+                        longitude: longArray,
+                        eki: ekiArray,
+                        bgc: bgcArray,
+                    });
                 }
             }
         }
@@ -334,7 +384,7 @@ async function gsrun(cl) {
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
         }
-        if (!cookietoken){
+        if (!cookietoken) {
             res.render('plzLogin', {
                 latitude: latiArray,
                 len: latiArray.length,
@@ -342,12 +392,12 @@ async function gsrun(cl) {
                 eki: ekiArray,
                 bgc: bgcArray,
             })
-        }
-        else{
+        } else {
             let pname = await gsapi.spreadsheets.values.get(optpropsname);
             let pquan0 = await gsapi.spreadsheets.values.get(optpropsq0);
             let pquan1 = await gsapi.spreadsheets.values.get(optpropsq1);
             let pquan2 = await gsapi.spreadsheets.values.get(optpropsq2);
+            let pquan3 = await gsapi.spreadsheets.values.get(optpropsq3);
             let pquana = await gsapi.spreadsheets.values.get(optpropsqa);
             let tusername = await gsapi.spreadsheets.values.get(optusername);
             let propsid = await gsapi.spreadsheets.values.get(optpropsid);
@@ -356,20 +406,22 @@ async function gsrun(cl) {
             let pquan0Array = [];
             let pquan1Array = [];
             let pquan2Array = [];
+            let pquan3Array = [];
             let pquanaArray = [];
             let tuserArray = [];
             let pidArray = [];
             let ptopicArray = [];
-        for (let i =0; i<pname.data.values.length; i++){
-            pnameArray[i] = pname.data.values[i][0];
-            pquan0Array[i] = pquan0.data.values[i][0];
-            pquan1Array[i] = pquan1.data.values[i][0];
-            pquan2Array[i] = pquan2.data.values[i][0];
-            pquanaArray[i] = pquana.data.values[i][0];
-            tuserArray[i] = tusername.data.values[0][i];
-            pidArray[i] = propsid.data.values[i][0];
-            ptopicArray[i] = propstopic.data.values[i][0];
-        }
+            for (let i = 0; i < pname.data.values.length; i++) {
+                pnameArray[i] = pname.data.values[i][0];
+                pquan0Array[i] = pquan0.data.values[i][0];
+                pquan1Array[i] = pquan1.data.values[i][0];
+                pquan2Array[i] = pquan2.data.values[i][0];
+                pquan3Array[i] = pquan2.data.values[i][0];
+                pquanaArray[i] = pquana.data.values[i][0];
+                tuserArray[i] = tusername.data.values[0][i];
+                pidArray[i] = propsid.data.values[i][0];
+                ptopicArray[i] = propstopic.data.values[i][0];
+            }
             var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
@@ -384,9 +436,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan0Array,
-                                pid:　pidArray,
-                                ptopic:　ptopicArray
+                                pquan: pquan0Array,
+                                pid: pidArray,
+                                ptopic: ptopicArray
                             })
                             break;
                         case 1:
@@ -397,9 +449,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan2Array,
-                                pid:　pidArray,
-                                ptopic:　ptopicArray
+                                pquan: pquan2Array,
+                                pid: pidArray,
+                                ptopic: ptopicArray
                             })
                             break;
                         case 2:
@@ -410,9 +462,9 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquan3Array,
-                                pid:　pidArray,
-                                ptopic:　ptopicArray
+                                pquan: pquan3Array,
+                                pid: pidArray,
+                                ptopic: ptopicArray
                             })
                             break;
                         case 3:
@@ -423,15 +475,16 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan:　pquanaArray,
-                                pid:　pidArray,
-                                ptopic:　ptopicArray
+                                pquan: pquanaArray,
+                                pid: pidArray,
+                                ptopic: ptopicArray
                             })
                             break;
                     }
                 }
             }
-        }});
+        }
+    });
 }
 
 
