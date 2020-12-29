@@ -130,7 +130,11 @@
     }
 
     //抓定位↑
-
+    function verifyuse(prop){
+        if (confirm("確定使用?") == true) {
+            alert("已使用【"+prop+"】");
+        }
+    }
 
     for (let i=0;i<pid.length;i++) {
         $('#map-model').append(`<div class="modal fade" id="${pid[i]}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -150,7 +154,7 @@
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                <button type="button" class="btn btn-primary">使用</button>
+                <button type="button" class="btn btn-primary" onclick="verifyuse(pname[${i}])">使用</button>
             </div>
         </div>
     </div>

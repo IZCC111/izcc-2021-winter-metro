@@ -340,10 +340,9 @@ async function gsrun(cl) {
 
                     console.log(token)
                     res.cookie("token", token).redirect(req.get('referer'));
-
                 } else {
                     test++;
-                    if (test = username.data.values[0].length) {
+                    if (test === username.data.values[0].length) {
                         res.render('invalidLogin', {
                             latitude: latiArray,
                             len: latiArray.length,
@@ -355,7 +354,7 @@ async function gsrun(cl) {
                 }
             } else {
                 test++;
-                if (test = username.data.values[0].length) {
+                if (test === username.data.values[0].length) {
                     res.render('invalidLogin', {
                         latitude: latiArray,
                         len: latiArray.length,
@@ -416,7 +415,7 @@ async function gsrun(cl) {
                 pquan0Array[i] = pquan0.data.values[i][0];
                 pquan1Array[i] = pquan1.data.values[i][0];
                 pquan2Array[i] = pquan2.data.values[i][0];
-                pquan3Array[i] = pquan2.data.values[i][0];
+                pquan3Array[i] = pquan3.data.values[i][0];
                 pquanaArray[i] = pquana.data.values[i][0];
                 tuserArray[i] = tusername.data.values[0][i];
                 pidArray[i] = propsid.data.values[i][0];
@@ -449,7 +448,7 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan: pquan2Array,
+                                pquan: pquan1Array,
                                 pid: pidArray,
                                 ptopic: ptopicArray
                             })
@@ -462,12 +461,25 @@ async function gsrun(cl) {
                                 eki: ekiArray,
                                 bgc: bgcArray,
                                 pname: pnameArray,
-                                pquan: pquan3Array,
+                                pquan: pquan2Array,
                                 pid: pidArray,
                                 ptopic: ptopicArray
                             })
                             break;
                         case 3:
+                            res.render('props', {
+                                latitude: latiArray,
+                                len: latiArray.length,
+                                longitude: longArray,
+                                eki: ekiArray,
+                                bgc: bgcArray,
+                                pname: pnameArray,
+                                pquan: pquan3Array,
+                                pid: pidArray,
+                                ptopic: ptopicArray
+                            })
+                            break;
+                        case 4:
                             res.render('props', {
                                 latitude: latiArray,
                                 len: latiArray.length,
