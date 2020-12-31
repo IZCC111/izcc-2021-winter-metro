@@ -344,7 +344,7 @@
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                <button type="button" class="btn btn-primary" onclick="verifyeki(${i})">完成關卡</button>
+                <button type="button" class="btn btn-primary" style="display: none" onclick="verifyeki(${i})">完成關卡</button>
             </div>
         </div>
     </div>
@@ -394,7 +394,9 @@
                     for(let i=0;i<teki.length;i++){
                         if (teki[i]===ieki){
                             var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
+                            var topicbtn = document.getElementById(arr[i]).children[0].children[0].children[2].children[1];
                             topicp.innerHTML = topic[i];
+                            topicbtn.style.display = "inline";
                         }
                             }
                     break;

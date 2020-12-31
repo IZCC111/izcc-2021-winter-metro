@@ -67,9 +67,21 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!B1:B100'
     };
+    const opttopic2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'topic!C1:C100'
+    };
+    const optttf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B36:F133'
+    };
+    const optttf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B134:F231'
+    };
     const optteki = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-        range: 'topic!A1:B100'
+        range: 'topic!A1:A100'
     };
     const optteam = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
@@ -131,14 +143,19 @@ async function gsrun(cl) {
         let bgc = await gsapi.spreadsheets.values.get(optbgc);
         let img = await gsapi.spreadsheets.values.get(optimg);
         let topic = await gsapi.spreadsheets.values.get(opttopic);
+        let topic2 = await gsapi.spreadsheets.values.get(opttopic2);
         let teki = await gsapi.spreadsheets.values.get(optteki);
+        let tusername = await gsapi.spreadsheets.values.get(optusername);
+        let ttf1 = await gsapi.spreadsheets.values.get(optttf1);
+        let ttf2 = await gsapi.spreadsheets.values.get(optttf2);
 
         let latiArray = [];
         let longArray = [];
         let ekiArray = [];
         let bgcArray = [];
         let imgArray = [];
-        let tekiArray = [], topicArray = []
+        let tekiArray = [], topicArray = [];
+        let tusernameArray = [];
         for (let i = 0; i < lati.data.values.length; i++) {
             latiArray[i] = lati.data.values[i][0];
             longArray[i] = long.data.values[i][0];
@@ -146,10 +163,35 @@ async function gsrun(cl) {
             bgcArray[i] = bgc.data.values[i][0];
             imgArray[i] = img.data.values[i][0];
         }
-        for (let i = 0; i < teki.data.values.length; i++) {
-            tekiArray[i] = teki.data.values[i][0];
-            topicArray[i] = topic.data.values[i][0];
+        for (let i = 0; i < tusername.data.values[0].length; i++) {
+            tusernameArray[i] = tusername.data.values[0][i];
         }
+        if (req.cookies.token) {
+            var detoken = jwt.verify(req.cookies.token, SECRET);
+            tokenusername = detoken.username;
+            for (let j = 0; j < tusernameArray.length; j++) {
+                if (tusernameArray[j] === tokenusername) {
+                    for (let i = 0; i < teki.data.values.length; i++) {
+                        tekiArray[i] = teki.data.values[i][0];
+                        if (ttf1.data.values[i][j] === "true") {
+                            if (ttf2.data.values[i][j] === "true") {
+                                topicArray[i] = "關卡已完成";
+                            } else {
+                                topicArray[i] = topic2.data.values[i][0];
+                            }
+                        } else {
+                            topicArray[i] = topic.data.values[i][0];
+                        }
+                    }
+                }
+            }
+        } else {
+            for (let i = 0; i < teki.data.values.length; i++) {
+                tekiArray[i] = teki.data.values[i][0];
+                topicArray[i] = topic.data.values[i][0];
+            }
+        }
+        console.log(topicArray);
         res.render('index', {
             latitude: latiArray,
             longitude: longArray,
@@ -192,7 +234,7 @@ async function gsrun(cl) {
         let teampointArray = [];
         var nowteam = "未登入";
         var btnin = "block";
-        var btnout = "none"
+        var btnout = "none";
         for (let i = 0; i < tusername.data.values[0].length; i++) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
@@ -498,7 +540,6 @@ async function gsrun(cl) {
         }
     });
 }
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
