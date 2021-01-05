@@ -381,82 +381,85 @@
     }
 
 
-        function showPosition(position) {
-            let latitude = position.coords.latitude;
-            let longitude = position.coords.longitude;
-            x.innerHTML = "LAT: " + latitude +
-                ", LONG: " + longitude;
+    function showPosition(position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        x.innerHTML = "LAT: " + latitude +
+            ", LONG: " + longitude;
 
-            for (let i = 0; i < len; i++) {
-                let ilatitude = lati[i];
-                let ilongitude = long[i];
-                let ieki = eki[i];
-                let ibgc = bgc[i];
-                let iimg = img[i];
-                if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
-                    if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
-                        xeki.innerHTML = ieki;
-                        ximg.src = iimg;
-                        nav.style.background = ibgc;
-                        $.ajax({
-                            url: '/nowieki',
-                            type: 'POST',
-                            cache: false,
-                            data: {noweki: ieki},
-                            success: function (data) {
-                                console.log('Success!')
-                            },
-                            error: function (jqXHR, textStatus, err) {
-                                console.log('text status ' + textStatus + ', err ' + err)
-                            }
-                        })
-                        for (let i = 0; i < teki.length; i++) {
-                            if (teki[i] === ieki) {
-                                var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
-                                var topicbtn = document.getElementById(arr[i]).children[0].children[0].children[2].children[1];
-                                topicp.innerHTML = topic[i];
-                                topicbtn.style.display = "inline";
+        for (let i = 0; i < len; i++) {
+            let ilatitude = lati[i];
+            let ilongitude = long[i];
+            let ieki = eki[i];
+            let ibgc = bgc[i];
+            let iimg = img[i];
+            if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
+                if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
+                    xeki.innerHTML = ieki;
+                    ximg.src = iimg;
+                    nav.style.background = ibgc;
+                    $.ajax({
+                        url: '/nowieki',
+                        type: 'POST',
+                        cache: false,
+                        data: {noweki: ieki},
+                        success: function (data) {
+                            console.log('Success!')
+                        },
+                        error: function (jqXHR, textStatus, err) {
+                            console.log('text status ' + textStatus + ', err ' + err)
+                        }
+                    })
+                    for (let i = 0; i < teki.length; i++) {
+                        if (teki[i] === ieki) {
+                            var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
+                            var topicbtn = document.getElementById(arr[i]).children[0].children[0].children[2].children[1];
+                            topicp.innerHTML = topic[i];
+                            topicbtn.style.display = "inline";
+                            if (topicp.innerHTML === "關卡已完成") {
+                                topicbtn.style.display = "none";
                             }
                         }
-                        break;
-                    } else {
-                        xeki.innerHTML = "無鄰近車站";
-                        ximg.src = "./images/000.png";
-                        nav.style.backgroundColor = "gray";
                     }
+                    break;
                 } else {
                     xeki.innerHTML = "無鄰近車站";
                     ximg.src = "./images/000.png";
                     nav.style.backgroundColor = "gray";
                 }
+            } else {
+                xeki.innerHTML = "無鄰近車站";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
             }
         }
+    }
 
 
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    xeki.innerHTML = "定位錯誤";
-                    ximg.src = "./images/000.png";
-                    nav.style.backgroundColor = "gray";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    xeki.innerHTML = "定位錯誤";
-                    ximg.src = "./images/000.png";
-                    nav.style.backgroundColor = "gray";
-                    break;
-                case error.TIMEOUT:
-                    xeki.innerHTML = "定位錯誤";
-                    ximg.src = "./images/000.png";
-                    nav.style.backgroundColor = "gray";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    xeki.innerHTML = "定位錯誤";
-                    ximg.src = "./images/000.png";
-                    nav.style.backgroundColor = "gray";
-                    break;
-            }
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.TIMEOUT:
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
+                break;
+            case error.UNKNOWN_ERROR:
+                xeki.innerHTML = "定位錯誤";
+                ximg.src = "./images/000.png";
+                nav.style.backgroundColor = "gray";
+                break;
         }
+    }
 
     //抓定位↑
 </script>

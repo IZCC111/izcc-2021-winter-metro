@@ -581,7 +581,7 @@ async function gsrun(cl) {
 
     app.post('/doneki', async function (req, res) {
         console.log(req.body.i);
-        var ekii = req.body.i;
+        let ekii = parseInt(req.body.i);
         let cookietoken = req.cookies.token;
         if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
@@ -596,55 +596,30 @@ async function gsrun(cl) {
                 if (tokenusername === tusernameArray[i]) {
                     switch (i) {
                         case 0:
-                            verifytf(ekii+36,i,await gsapi.spreadsheets.values.get(opt0ttf1), await gsapi.spreadsheets.values.get(opt0ttf2));
-                            const updeki0 = {
-                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-                                range: 'team!B' + p,
-                                valueInputOption: 'USER_ENTERED',
-                                resource: {"values": "true"}
-                            }
-                            await gsapi.spreadsheets.values.update(updeki0);
+                            let t0tf1 = await gsapi.spreadsheets.values.get(opt0ttf1);
+                            let t0tf2 = await gsapi.spreadsheets.values.get(opt0ttf2);
+                            verifytf(ekii, i, t0tf1.data.values, t0tf2.data.values);
                             break;
                         case 1:
-                            let q = verifytf(tusernameArray) + i;
-                            const updeki1 = {
-                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-                                range: 'team!C' + q,
-                                valueInputOption: 'USER_ENTERED',
-                                resource: {"values": "true"}
-                            }
-                            await gsapi.spreadsheets.values.update(updeki1);
+                            let t1tf1 = await gsapi.spreadsheets.values.get(opt1ttf1);
+                            let t1tf2 = await gsapi.spreadsheets.values.get(opt1ttf2);
+                            verifytf(ekii, i, t1tf1.data.values, t1tf2.data.values);
                             break;
                         case 2:
-                            let r = verifytf(tusernameArray) + i;
-                            const updeki2 = {
-                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-                                range: 'team!D' + r,
-                                valueInputOption: 'USER_ENTERED',
-                                resource: {"values": "true"}
-                            }
-                            await gsapi.spreadsheets.values.update(updeki2);
+                            let t2tf1 = await gsapi.spreadsheets.values.get(opt2ttf1);
+                            let t2tf2 = await gsapi.spreadsheets.values.get(opt2ttf2);
+                            verifytf(ekii, i, t2tf1.data.values, t2tf2.data.values);
                             break;
                         case 3:
-                            let s = verifytf(tusernameArray) + i;
-                            const updeki3 = {
-                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-                                range: 'team!E' + s,
-                                valueInputOption: 'USER_ENTERED',
-                                resource: {"values": "true"}
-                            }
-                            await gsapi.spreadsheets.values.update(updeki3);
+                            let t3tf1 = await gsapi.spreadsheets.values.get(opt3ttf1);
+                            let t3tf2 = await gsapi.spreadsheets.values.get(opt3ttf2);
+                            verifytf(ekii, i, t3tf1.data.values, t3tf2.data.values);
                             break;
                         case 4:
-                            let t = verifytf(tusernameArray) + i;
-                            console.log('team!F'+t);
-                            const updekia = {
-                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
-                                range: 'team!F' + t,
-                                valueInputOption: 'USER_ENTERED',
-                                resource: {"values": "true"}
-                            }
-                            await gsapi.spreadsheets.values.update(updekia);
+                            let tatf1 = await gsapi.spreadsheets.values.get(optattf1);
+                            let tatf2 = await gsapi.spreadsheets.values.get(optattf2);
+                            verifytf(ekii, i, tatf1.data.values, tatf2.data.values);
+                            console.log(tatf1.data.values);
                             break;
                     }
                 }
@@ -655,111 +630,123 @@ async function gsrun(cl) {
         res.send("")
     });
 
-    async function verifytf(ekii,teamc,ttf1,ttf2) {
-        if(ttf1[ekii]==="true"){
-            if(ttf2[ekii+36]==="true"){
+    async function verifytf(ekii, teamc, ttf1, ttf2) {
+        if (ttf1[ekii][0] === "true") {
+            if (ttf2[ekii][0] === "true") {
                 res.redirect('/')
-            }else {
-                ttf2[ekii+36]="true"
+            } else {
+                ttf2[ekii][0] = "true";
                 switch (teamc) {
                     case 0:
-                        const updeki0 = {
+                        const ekitf02 = {
                             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                             range: 'team!B134',
                             valueInputOption: 'USER_ENTERED',
                             resource: {"values": ttf2}
                         }
-                        await gsapi.spreadsheets.values.update(updeki0);
+                        await gsapi.spreadsheets.values.update(ekitf02);
+                        res.redirect('/');
                         break;
                     case 1:
-                        const updeki1 = {
+                        const ekitf12 = {
                             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                             range: 'team!C134',
                             valueInputOption: 'USER_ENTERED',
                             resource: {"values": ttf2}
                         }
-                        await gsapi.spreadsheets.values.update(updeki1);
+                        await gsapi.spreadsheets.values.update(ekitf12);
+                        res.redirect('/');
                         break;
                     case 2:
-                        const updeki2 = {
+                        const ekitf22 = {
                             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                             range: 'team!D134',
                             valueInputOption: 'USER_ENTERED',
                             resource: {"values": ttf2}
                         }
-                        await gsapi.spreadsheets.values.update(updeki2);
+                        await gsapi.spreadsheets.values.update(ekitf22);
+                        res.redirect('/');
                         break;
                     case 3:
-                        const updeki3 = {
+                        const ekitf32 = {
                             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                             range: 'team!E134',
                             valueInputOption: 'USER_ENTERED',
                             resource: {"values": ttf2}
                         }
-                        await gsapi.spreadsheets.values.update(updeki3);
+                        await gsapi.spreadsheets.values.update(ekitf32);
+                        res.redirect('/');
                         break;
                     case 4:
-                        const updekia = {
+                        const ekitfa2 = {
                             spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                             range: 'team!F134',
                             valueInputOption: 'USER_ENTERED',
                             resource: {"values": ttf2}
                         }
-                        await gsapi.spreadsheets.values.update(updekia);
+                        await gsapi.spreadsheets.values.update(ekitfa2);
+                        res.redirect('/');
                         break;
                 }
             }
-        }else {
-            ttf1[ekii]="true";
+        } else {
+            ttf1[ekii][0] = "true";
+            console.log(ttf1);
             switch (teamc) {
                 case 0:
-                    const updeki0 = {
+                    const ekitf01 = {
                         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                         range: 'team!B36',
                         valueInputOption: 'USER_ENTERED',
                         resource: {"values": ttf1}
                     }
-                    await gsapi.spreadsheets.values.update(updeki0);
+                    await gsapi.spreadsheets.values.update(ekitf01);
+                    res.redirect('/');
                     break;
                 case 1:
-                    const updeki1 = {
+                    const ekitf11 = {
                         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                         range: 'team!C36',
                         valueInputOption: 'USER_ENTERED',
                         resource: {"values": ttf1}
                     }
-                    await gsapi.spreadsheets.values.update(updeki1);
+                    await gsapi.spreadsheets.values.update(ekitf11);
+                    res.redirect('/');
                     break;
                 case 2:
-                    const updeki2 = {
+                    const ekitf21 = {
                         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                         range: 'team!D36',
                         valueInputOption: 'USER_ENTERED',
                         resource: {"values": ttf1}
                     }
-                    await gsapi.spreadsheets.values.update(updeki2);
+                    await gsapi.spreadsheets.values.update(ekitf21);
+                    res.redirect('/');
                     break;
                 case 3:
-                    const updeki3 = {
+                    const ekitf31 = {
                         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                         range: 'team!E36',
                         valueInputOption: 'USER_ENTERED',
                         resource: {"values": ttf1}
                     }
-                    await gsapi.spreadsheets.values.update(updeki3);
+                    await gsapi.spreadsheets.values.update(ekitf31);
+                    res.redirect('/');
                     break;
                 case 4:
-                    const updekia = {
+                    const ekitfa1 = {
                         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
                         range: 'team!F36',
                         valueInputOption: 'USER_ENTERED',
                         resource: {"values": ttf1}
                     }
-                    await gsapi.spreadsheets.values.update(updekia);
+                    await gsapi.spreadsheets.values.update(ekitfa1);
+                    res.redirect('/');
                     break;
             }
         }
     }
 }
-        const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
