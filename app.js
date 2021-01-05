@@ -79,6 +79,46 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!B134:F231'
     };
+    const opt0ttf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B36:B133'
+    };
+    const opt0ttf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!B134:B231'
+    };
+    const opt1ttf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!C36:C133'
+    };
+    const opt1ttf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!C134:C231'
+    };
+    const opt2ttf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!D36:D133'
+    };
+    const opt2ttf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!D134:D231'
+    };
+    const opt3ttf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!E36:E133'
+    };
+    const opt3ttf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!E134:E231'
+    };
+    const optattf1 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!F36:F133'
+    };
+    const optattf2 = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'team!F134:F231'
+    };
     const optteki = {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!A1:A100'
@@ -191,7 +231,6 @@ async function gsrun(cl) {
                 topicArray[i] = topic.data.values[i][0];
             }
         }
-        console.log(topicArray);
         res.render('index', {
             latitude: latiArray,
             longitude: longArray,
@@ -539,7 +578,188 @@ async function gsrun(cl) {
             }
         }
     });
-}
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));
+    app.post('/doneki', async function (req, res) {
+        console.log(req.body.i);
+        var ekii = req.body.i;
+        let cookietoken = req.cookies.token;
+        if (cookietoken) {
+            var detoken = jwt.verify(cookietoken, SECRET);
+            tokenusername = detoken.username;
+            console.log(tokenusername);
+            let tusername = await gsapi.spreadsheets.values.get(optusername);
+            let tusernameArray = [];
+            for (let i = 0; i < tusername.data.values[0].length; i++) {
+                tusernameArray[i] = tusername.data.values[0][i];
+            }
+            for (let i = 0; i < tusername.data.values[0].length; i++) {
+                if (tokenusername === tusernameArray[i]) {
+                    switch (i) {
+                        case 0:
+                            verifytf(ekii+36,i,await gsapi.spreadsheets.values.get(opt0ttf1), await gsapi.spreadsheets.values.get(opt0ttf2));
+                            const updeki0 = {
+                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                                range: 'team!B' + p,
+                                valueInputOption: 'USER_ENTERED',
+                                resource: {"values": "true"}
+                            }
+                            await gsapi.spreadsheets.values.update(updeki0);
+                            break;
+                        case 1:
+                            let q = verifytf(tusernameArray) + i;
+                            const updeki1 = {
+                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                                range: 'team!C' + q,
+                                valueInputOption: 'USER_ENTERED',
+                                resource: {"values": "true"}
+                            }
+                            await gsapi.spreadsheets.values.update(updeki1);
+                            break;
+                        case 2:
+                            let r = verifytf(tusernameArray) + i;
+                            const updeki2 = {
+                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                                range: 'team!D' + r,
+                                valueInputOption: 'USER_ENTERED',
+                                resource: {"values": "true"}
+                            }
+                            await gsapi.spreadsheets.values.update(updeki2);
+                            break;
+                        case 3:
+                            let s = verifytf(tusernameArray) + i;
+                            const updeki3 = {
+                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                                range: 'team!E' + s,
+                                valueInputOption: 'USER_ENTERED',
+                                resource: {"values": "true"}
+                            }
+                            await gsapi.spreadsheets.values.update(updeki3);
+                            break;
+                        case 4:
+                            let t = verifytf(tusernameArray) + i;
+                            console.log('team!F'+t);
+                            const updekia = {
+                                spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                                range: 'team!F' + t,
+                                valueInputOption: 'USER_ENTERED',
+                                resource: {"values": "true"}
+                            }
+                            await gsapi.spreadsheets.values.update(updekia);
+                            break;
+                    }
+                }
+            }
+
+
+        }
+        res.send("")
+    });
+
+    async function verifytf(ekii,teamc,ttf1,ttf2) {
+        if(ttf1[ekii]==="true"){
+            if(ttf2[ekii+36]==="true"){
+                res.redirect('/')
+            }else {
+                ttf2[ekii+36]="true"
+                switch (teamc) {
+                    case 0:
+                        const updeki0 = {
+                            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                            range: 'team!B134',
+                            valueInputOption: 'USER_ENTERED',
+                            resource: {"values": ttf2}
+                        }
+                        await gsapi.spreadsheets.values.update(updeki0);
+                        break;
+                    case 1:
+                        const updeki1 = {
+                            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                            range: 'team!C134',
+                            valueInputOption: 'USER_ENTERED',
+                            resource: {"values": ttf2}
+                        }
+                        await gsapi.spreadsheets.values.update(updeki1);
+                        break;
+                    case 2:
+                        const updeki2 = {
+                            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                            range: 'team!D134',
+                            valueInputOption: 'USER_ENTERED',
+                            resource: {"values": ttf2}
+                        }
+                        await gsapi.spreadsheets.values.update(updeki2);
+                        break;
+                    case 3:
+                        const updeki3 = {
+                            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                            range: 'team!E134',
+                            valueInputOption: 'USER_ENTERED',
+                            resource: {"values": ttf2}
+                        }
+                        await gsapi.spreadsheets.values.update(updeki3);
+                        break;
+                    case 4:
+                        const updekia = {
+                            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                            range: 'team!F134',
+                            valueInputOption: 'USER_ENTERED',
+                            resource: {"values": ttf2}
+                        }
+                        await gsapi.spreadsheets.values.update(updekia);
+                        break;
+                }
+            }
+        }else {
+            ttf1[ekii]="true";
+            switch (teamc) {
+                case 0:
+                    const updeki0 = {
+                        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                        range: 'team!B36',
+                        valueInputOption: 'USER_ENTERED',
+                        resource: {"values": ttf1}
+                    }
+                    await gsapi.spreadsheets.values.update(updeki0);
+                    break;
+                case 1:
+                    const updeki1 = {
+                        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                        range: 'team!C36',
+                        valueInputOption: 'USER_ENTERED',
+                        resource: {"values": ttf1}
+                    }
+                    await gsapi.spreadsheets.values.update(updeki1);
+                    break;
+                case 2:
+                    const updeki2 = {
+                        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                        range: 'team!D36',
+                        valueInputOption: 'USER_ENTERED',
+                        resource: {"values": ttf1}
+                    }
+                    await gsapi.spreadsheets.values.update(updeki2);
+                    break;
+                case 3:
+                    const updeki3 = {
+                        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                        range: 'team!E36',
+                        valueInputOption: 'USER_ENTERED',
+                        resource: {"values": ttf1}
+                    }
+                    await gsapi.spreadsheets.values.update(updeki3);
+                    break;
+                case 4:
+                    const updekia = {
+                        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+                        range: 'team!F36',
+                        valueInputOption: 'USER_ENTERED',
+                        resource: {"values": ttf1}
+                    }
+                    await gsapi.spreadsheets.values.update(updekia);
+                    break;
+            }
+        }
+    }
+}
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => console.log('Server up and running on ' + process.env.PORT + ' or 3000'));

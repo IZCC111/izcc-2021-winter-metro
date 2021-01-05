@@ -295,7 +295,9 @@
         <li class="flist col-3 col-lg-3 col-xl-3" data-toggle="modal" data-target="#spin-modal"><img class="focon"
                                                                                                      src="images/icons/dice.png"><br>骰子
         </li>
-        <li class="flist col-3 col-lg-3 col-xl-3"><a class="flist" href="/props"><img class="focon" src="images/icons/briefcase.png"><br>道具</a></li>
+        <li class="flist col-3 col-lg-3 col-xl-3"><a class="flist" href="/props"><img class="focon"
+                                                                                      src="images/icons/briefcase.png"><br>道具</a>
+        </li>
         <li class="flist col-3 col-lg-3 col-xl-3"><a class="flist"
                                                      href="https://drive.google.com/drive/folders/1muiBrAYOCZ3lCX2axeAQMrBasWfhxHvg?usp=sharing"><img
                         class="focon" src="images/icons/cloud-computing.png"><br>上傳</a></li>
@@ -350,96 +352,111 @@
     </div>
 </div>
 `)
-}
+    }
 
+    async function getLocation() {
+        if (navigator.geolocation) {
+            await navigator.geolocation.getCurrentPosition(showPosition, showError);
+            location.reload();
+        } else {
+            nav.style.backgroundColor = "gray";
+        }
+    }
 
-    function verifyeki(i){
+    function verifyeki(i) {
         if (confirm("確定完成?") == true) {
-            alert(i);
+            $.ajax({
+                url: '/doneki',
+                type: 'POST',
+                cache: false,
+                data: {i: i},
+                success: function (data) {
+                    console.log('Success!')
+                },
+                error: function (jqXHR, textStatus, err) {
+                    console.log('text status ' + textStatus + ', err ' + err)
+                }
+            })
         }
     }
 
 
+        function showPosition(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            x.innerHTML = "LAT: " + latitude +
+                ", LONG: " + longitude;
 
-
-    function showPosition(position) {
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
-        x.innerHTML = "LAT: " + latitude +
-            ", LONG: " + longitude;
-
-        for (let i = 0; i < len; i++) {
-            let ilatitude = lati[i];
-            let ilongitude = long[i];
-            let ieki = eki[i];
-            let ibgc = bgc[i];
-            let iimg = img[i];
-            if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
-                if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
-                    xeki.innerHTML = ieki;
-                    ximg.src = iimg;
-                    nav.style.background = ibgc;
-                    $.ajax({
-                        url: '/nowieki',
-                        type: 'POST',
-                        cache: false,
-                        data: {noweki: ieki},
-                        success: function (data) {
-                            console.log('Success!')
-                        },
-                        error: function (jqXHR, textStatus, err) {
-                            console.log('text status ' + textStatus + ', err ' + err)
-                        }
-                    })
-                    for(let i=0;i<teki.length;i++){
-                        if (teki[i]===ieki){
-                            var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
-                            var topicbtn = document.getElementById(arr[i]).children[0].children[0].children[2].children[1];
-                            topicp.innerHTML = topic[i];
-                            topicbtn.style.display = "inline";
-                        }
+            for (let i = 0; i < len; i++) {
+                let ilatitude = lati[i];
+                let ilongitude = long[i];
+                let ieki = eki[i];
+                let ibgc = bgc[i];
+                let iimg = img[i];
+                if ((latitude + 0.003) >= ilatitude && (latitude - 0.003) <= ilatitude) {
+                    if ((longitude + 0.003) >= ilongitude && (longitude - 0.003) <= ilongitude) {
+                        xeki.innerHTML = ieki;
+                        ximg.src = iimg;
+                        nav.style.background = ibgc;
+                        $.ajax({
+                            url: '/nowieki',
+                            type: 'POST',
+                            cache: false,
+                            data: {noweki: ieki},
+                            success: function (data) {
+                                console.log('Success!')
+                            },
+                            error: function (jqXHR, textStatus, err) {
+                                console.log('text status ' + textStatus + ', err ' + err)
                             }
-                    break;
+                        })
+                        for (let i = 0; i < teki.length; i++) {
+                            if (teki[i] === ieki) {
+                                var topicp = document.getElementById(arr[i]).children[0].children[0].children[1].children[1];
+                                var topicbtn = document.getElementById(arr[i]).children[0].children[0].children[2].children[1];
+                                topicp.innerHTML = topic[i];
+                                topicbtn.style.display = "inline";
+                            }
+                        }
+                        break;
+                    } else {
+                        xeki.innerHTML = "無鄰近車站";
+                        ximg.src = "./images/000.png";
+                        nav.style.backgroundColor = "gray";
+                    }
                 } else {
                     xeki.innerHTML = "無鄰近車站";
                     ximg.src = "./images/000.png";
                     nav.style.backgroundColor = "gray";
                 }
-            } else {
-                xeki.innerHTML = "無鄰近車站";
-                ximg.src = "./images/000.png";
-                nav.style.backgroundColor = "gray";
             }
         }
 
 
-    }
-
-
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                xeki.innerHTML = "定位錯誤";
-                ximg.src = "./images/000.png";
-                nav.style.backgroundColor = "gray";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                xeki.innerHTML = "定位錯誤";
-                ximg.src = "./images/000.png";
-                nav.style.backgroundColor = "gray";
-                break;
-            case error.TIMEOUT:
-                xeki.innerHTML = "定位錯誤";
-                ximg.src = "./images/000.png";
-                nav.style.backgroundColor = "gray";
-                break;
-            case error.UNKNOWN_ERROR:
-                xeki.innerHTML = "定位錯誤";
-                ximg.src = "./images/000.png";
-                nav.style.backgroundColor = "gray";
-                break;
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    xeki.innerHTML = "定位錯誤";
+                    ximg.src = "./images/000.png";
+                    nav.style.backgroundColor = "gray";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    xeki.innerHTML = "定位錯誤";
+                    ximg.src = "./images/000.png";
+                    nav.style.backgroundColor = "gray";
+                    break;
+                case error.TIMEOUT:
+                    xeki.innerHTML = "定位錯誤";
+                    ximg.src = "./images/000.png";
+                    nav.style.backgroundColor = "gray";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    xeki.innerHTML = "定位錯誤";
+                    ximg.src = "./images/000.png";
+                    nav.style.backgroundColor = "gray";
+                    break;
+            }
         }
-    }
 
     //抓定位↑
 </script>
