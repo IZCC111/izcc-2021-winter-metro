@@ -645,7 +645,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf02);
-                        res.redirect('/');
                         break;
                     case 1:
                         const ekitf12 = {
@@ -655,7 +654,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf12);
-                        res.redirect('/');
                         break;
                     case 2:
                         const ekitf22 = {
@@ -665,7 +663,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf22);
-                        res.redirect('/');
                         break;
                     case 3:
                         const ekitf32 = {
@@ -675,7 +672,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf32);
-                        res.redirect('/');
                         break;
                     case 4:
                         const ekitfa2 = {
@@ -685,7 +681,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitfa2);
-                        res.redirect('/');
                         break;
                 }
             }
@@ -701,7 +696,6 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf01);
-                    res.redirect('/');
                     break;
                 case 1:
                     const ekitf11 = {
@@ -711,7 +705,6 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf11);
-                    res.redirect('/');
                     break;
                 case 2:
                     const ekitf21 = {
@@ -721,7 +714,6 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf21);
-                    res.redirect('/');
                     break;
                 case 3:
                     const ekitf31 = {
@@ -731,7 +723,6 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf31);
-                    res.redirect('/');
                     break;
                 case 4:
                     const ekitfa1 = {
@@ -741,7 +732,6 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitfa1);
-                    res.redirect('/');
                     break;
             }
         }
