@@ -717,7 +717,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf01);
                     if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
-                        await updateowner(owner);
+                        updateowner(owner);
                     }
                     break;
                 case 1:
@@ -730,7 +730,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf11);
                     if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
-                        await updateowner(owner);
+                        updateowner(owner);
                     }
                     break;
                 case 2:
@@ -743,7 +743,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf21);
                     if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
-                        await updateowner(owner);
+                        updateowner(owner);
                     }
                     break;
                 case 3:
@@ -756,7 +756,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf31);
                     if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
-                        await updateowner(owner);
+                        updateowner(owner);
                     }
                     break;
                 case 4:
@@ -769,7 +769,9 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitfa1);
                     if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
-                        await updateowner(owner);
+                        console.log(owner[ekii]);
+                        console.log(tnameArray[teamc]);
+                        updateowner(owner);
                     }
                     break;
             }
