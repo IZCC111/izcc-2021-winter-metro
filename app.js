@@ -304,7 +304,7 @@ async function gsrun(cl) {
             teampointArray[i] = teampoint.data.values[0][i];
         }
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+            jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.clearCookie('token');
@@ -312,6 +312,7 @@ async function gsrun(cl) {
                     //token過期判斷
                 }
             });
+            var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -378,7 +379,7 @@ async function gsrun(cl) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+            jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.clearCookie('token');
@@ -386,6 +387,7 @@ async function gsrun(cl) {
                     //token過期判斷
                 }
             });
+            var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -449,7 +451,6 @@ async function gsrun(cl) {
             if (iusername === usernameArray[i]) {
                 if (ipassword === passwordArray[i]) {
                     var token = jwt.sign({username: iusername}, SECRET, {expiresIn: '1h'});
-
                     console.log(token)
                     res.cookie("token", token).redirect(req.get('referer'));
                 } else {
@@ -533,7 +534,7 @@ async function gsrun(cl) {
                 pidArray[i] = propsid.data.values[i][0];
                 ptopicArray[i] = propstopic.data.values[i][0];
             }
-            var detoken = jwt.verify(req.body.token, SECRET, function (err) {
+            jwt.verify(req.body.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.clearCookie('token');
@@ -541,6 +542,7 @@ async function gsrun(cl) {
                     //token過期判斷
                 }
             });
+            var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -627,7 +629,7 @@ async function gsrun(cl) {
         }
         let cookietoken = req.cookies.token;
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+            jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.clearCookie('token');
@@ -635,6 +637,7 @@ async function gsrun(cl) {
                     //token過期判斷
                 }
             });
+            var detoken = jwt.verify(cookietoken, SECRET);
             tokenusername = detoken.username;
             console.log(tokenusername);
             let tusername = await gsapi.spreadsheets.values.get(optusername);
