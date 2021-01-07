@@ -24,7 +24,8 @@
     "googleapis": "^65.0.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.6",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "threejs-dice": "^1.1.0"
   },
   "devDependencies": {},
   "description": ""

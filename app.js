@@ -179,6 +179,10 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'topic!D1:D98'
     };
+    const optownno = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'topic!D99:D99'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -624,9 +628,13 @@ async function gsrun(cl) {
         console.log(req.body.i);
         let ekii = parseInt(req.body.i);
         let owner = await gsapi.spreadsheets.values.get(optowner);
+        let ownno = await gsapi.spreadsheets.values.get(optownno);
+        console.log(ownno.data.values[0][0]);
+        console.log(owner.data.values[0][0]);
         let ownerArray = [];
         for (let i = 0; i < owner.data.values.length; i++) {
-            ownerArray[i] = JSON.stringify(owner.data.values[i][0]);
+            ownerArray.push([owner.data.values[i][0]]);
+            console.log(owner.data.values[i][0]);
         }
         let cookietoken = req.cookies.token;
         if (cookietoken) {
@@ -687,8 +695,8 @@ async function gsrun(cl) {
     async function verifytf(ekii, teamc, owner, ttf1, ttf2) {
         let tname = await gsapi.spreadsheets.values.get(optteam);
         let tnameArray = [];
-        for (let i = 0; i < tname.data.values.length; i++) {
-            tnameArray[i] = tname.data.values[0][i];
+        for (let i = 0; i < tname.data.values[0].length; i++) {
+            tnameArray.push(tname.data.values[0][i]);
         }
         if (ttf1[ekii][0] === "true") {
             if (ttf2[ekii][0] === "true") {
@@ -755,8 +763,8 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf01);
-                    if (owner[ekii] === "無") {
-                        owner[ekii] = tnameArray[teamc];
+                    if (owner[ekii][0]=== "無") {
+                        owner[ekii][0] = tnameArray[teamc];
                         updateowner(owner);
                     }
                     break;
@@ -768,8 +776,8 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf11);
-                    if (owner[ekii] === "無") {
-                        owner[ekii] = tnameArray[teamc];
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tnameArray[teamc];
                         updateowner(owner);
                     }
                     break;
@@ -781,8 +789,8 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf21);
-                    if (owner[ekii] === "無") {
-                        owner[ekii] = tnameArray[teamc];
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tnameArray[teamc];
                         updateowner(owner);
                     }
                     break;
@@ -794,8 +802,8 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf31);
-                    if (owner[ekii] === "無") {
-                        owner[ekii] = tnameArray[teamc];
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tnameArray[teamc];
                         updateowner(owner);
                     }
                     break;
@@ -807,13 +815,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitfa1);
-                    if (owner[ekii] === "\"無\"") {
-                        owner[ekii] = tnameArray[teamc];
-                        console.log(owner[ekii]);
-                        console.log(tnameArray[teamc]);
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tnameArray[teamc];
+                        console.log(tnameArray);
                         updateowner(owner);
-                    }else{
-                        console.log('else'+owner[ekii]+owner);
                     }
                     break;
             }
