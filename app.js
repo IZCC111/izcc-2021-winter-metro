@@ -593,7 +593,7 @@ async function gsrun(cl) {
         let ekii = parseInt(req.body.i);
         let owner = await gsapi.spreadsheets.values.get(optowner);
         let ownerArray = [];
-        for (let i = 0; i < ownerlist.data.values.length; i++) {
+        for (let i = 0; i < owner.data.values.length; i++) {
             ownerArray[i] = owner.data.values[i][0];
         }
         let cookietoken = req.cookies.token;
