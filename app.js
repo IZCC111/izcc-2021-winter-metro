@@ -781,6 +781,7 @@ async function gsrun(cl) {
             resource: {"values": owner}
         }
         await gsapi.spreadsheets.values.update(upowner);
+        console.log(owner);
     }
 }
 
