@@ -215,7 +215,7 @@ async function gsrun(cl) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (req.cookies.token) {
-            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+            var detoken = jwt.verify(req.cookies.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.redirect('/');
@@ -529,7 +529,7 @@ async function gsrun(cl) {
                 pidArray[i] = propsid.data.values[i][0];
                 ptopicArray[i] = propstopic.data.values[i][0];
             }
-            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+            var detoken = jwt.verify(req.body.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.redirect('/');
