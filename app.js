@@ -660,10 +660,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf02);
-                        if (owner[ekii][0] === "無") {
-                            owner[ekii][0] = tname[0][teamc];
-                            updateowner(owner);
-                        }
                         break;
                     case 1:
                         const ekitf12 = {
@@ -673,10 +669,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf12);
-                        if (owner[ekii][0] === "無") {
-                            owner[ekii][0] = tname[0][teamc];
-                            updateowner(owner);
-                        }
                         break;
                     case 2:
                         const ekitf22 = {
@@ -686,10 +678,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf22);
-                        if (owner[ekii][0] === "無") {
-                            owner[ekii][0] = tname[0][teamc];
-                            updateowner(owner);
-                        }
                         break;
                     case 3:
                         const ekitf32 = {
@@ -699,10 +687,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf32);
-                        if (owner[ekii][0] === "無") {
-                            owner[ekii][0] = tname[0][teamc];
-                            updateowner(owner);
-                        }
                         break;
                     case 4:
                         const ekitfa2 = {
@@ -712,10 +696,6 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitfa2);
-                        if (owner[ekii][0] === "無") {
-                            owner[ekii][0] = tname[0][teamc];
-                            updateowner(owner);
-                        }
                         break;
                 }
             }
@@ -731,7 +711,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf01);
-
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tname[0][teamc];
+                        updateowner(owner);
+                    }
                     break;
                 case 1:
                     const ekitf11 = {
@@ -741,6 +724,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf11);
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tname[0][teamc];
+                        updateowner(owner);
+                    }
                     break;
                 case 2:
                     const ekitf21 = {
@@ -750,6 +737,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf21);
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tname[0][teamc];
+                        updateowner(owner);
+                    }
                     break;
                 case 3:
                     const ekitf31 = {
@@ -759,6 +750,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf31);
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tname[0][teamc];
+                        updateowner(owner);
+                    }
                     break;
                 case 4:
                     const ekitfa1 = {
@@ -768,6 +763,10 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitfa1);
+                    if (owner[ekii][0] === "無") {
+                        owner[ekii][0] = tname[0][teamc];
+                        updateowner(owner);
+                    }
                     break;
             }
         }
