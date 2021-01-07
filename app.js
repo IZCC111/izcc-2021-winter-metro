@@ -767,7 +767,7 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitfa1);
-                    if (owner[ekii] === JSON.stringify("無")) {
+                    if (owner[ekii] === "無") {
                         owner[ekii] = tnameArray[teamc];
                         console.log(owner[ekii]);
                         console.log(tnameArray[teamc]);
