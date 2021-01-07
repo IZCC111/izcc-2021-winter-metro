@@ -716,7 +716,7 @@ async function gsrun(cl) {
                     }
                     await gsapi.spreadsheets.values.update(ekitf01);
                     if (owner[ekii] === "無") {
-                        owner[ekii] = tname[teamc];
+                        owner[ekii] = tnameArray[teamc];
                         await updateowner(owner);
                     }
                     break;
@@ -729,7 +729,7 @@ async function gsrun(cl) {
                     }
                     await gsapi.spreadsheets.values.update(ekitf11);
                     if (owner[ekii] === "無") {
-                        owner[ekii] = tname[teamc];
+                        owner[ekii] = tnameArray[teamc];
                         await updateowner(owner);
                     }
                     break;
@@ -742,7 +742,7 @@ async function gsrun(cl) {
                     }
                     await gsapi.spreadsheets.values.update(ekitf21);
                     if (owner[ekii] === "無") {
-                        owner[ekii] = tname[teamc];
+                        owner[ekii] = tnameArray[teamc];
                         await updateowner(owner);
                     }
                     break;
@@ -755,7 +755,7 @@ async function gsrun(cl) {
                     }
                     await gsapi.spreadsheets.values.update(ekitf31);
                     if (owner[ekii] === "無") {
-                        owner[ekii] = tname[teamc];
+                        owner[ekii] = tnameArray[teamc];
                         await updateowner(owner);
                     }
                     break;
@@ -768,7 +768,7 @@ async function gsrun(cl) {
                     }
                     await gsapi.spreadsheets.values.update(ekitfa1);
                     if (owner[ekii] === "無") {
-                        owner[ekii] = tname[teamc];
+                        owner[ekii] = tnameArray[teamc];
                         await updateowner(owner);
                     }
                     break;
