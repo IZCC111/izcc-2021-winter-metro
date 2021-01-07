@@ -175,6 +175,10 @@ async function gsrun(cl) {
         spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
         range: 'team!H6:H16'
     };
+    const optowner = {
+        spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+        range: 'topic!D1:D98'
+    };
 
     app.get('/', async function (req, res) {
         let lati = await gsapi.spreadsheets.values.get(optlati);
@@ -188,7 +192,8 @@ async function gsrun(cl) {
         let tusername = await gsapi.spreadsheets.values.get(optusername);
         let ttf1 = await gsapi.spreadsheets.values.get(optttf1);
         let ttf2 = await gsapi.spreadsheets.values.get(optttf2);
-
+        let ownerlist = await gsapi.spreadsheets.values.get(optowner);
+        let ownerArray = [];
         let latiArray = [];
         let longArray = [];
         let ekiArray = [];
@@ -202,6 +207,9 @@ async function gsrun(cl) {
             ekiArray[i] = eki.data.values[i][0];
             bgcArray[i] = bgc.data.values[i][0];
             imgArray[i] = img.data.values[i][0];
+        }
+        for (let i = 0; i < ownerlist.data.values.length; i++) {
+            ownerArray[i] = ownerlist.data.values[i][0];
         }
         for (let i = 0; i < tusername.data.values[0].length; i++) {
             tusernameArray[i] = tusername.data.values[0][i];
@@ -239,7 +247,8 @@ async function gsrun(cl) {
             bgc: bgcArray,
             img: imgArray,
             teki: tekiArray,
-            topic: topicArray
+            topic: topicArray,
+            owner: ownerArray
         });
     });
 
@@ -582,6 +591,11 @@ async function gsrun(cl) {
     app.post('/doneki', async function (req, res) {
         console.log(req.body.i);
         let ekii = parseInt(req.body.i);
+        let owner = await gsapi.spreadsheets.values.get(optowner);
+        let ownerArray = [];
+        for (let i = 0; i < ownerlist.data.values.length; i++) {
+            ownerArray[i] = owner.data.values[i][0];
+        }
         let cookietoken = req.cookies.token;
         if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
@@ -598,27 +612,27 @@ async function gsrun(cl) {
                         case 0:
                             let t0tf1 = await gsapi.spreadsheets.values.get(opt0ttf1);
                             let t0tf2 = await gsapi.spreadsheets.values.get(opt0ttf2);
-                            verifytf(ekii, i, t0tf1.data.values, t0tf2.data.values);
+                            verifytf(ekii, i, owner, t0tf1.data.values, t0tf2.data.values);
                             break;
                         case 1:
                             let t1tf1 = await gsapi.spreadsheets.values.get(opt1ttf1);
                             let t1tf2 = await gsapi.spreadsheets.values.get(opt1ttf2);
-                            verifytf(ekii, i, t1tf1.data.values, t1tf2.data.values);
+                            verifytf(ekii, i, owner, t1tf1.data.values, t1tf2.data.values);
                             break;
                         case 2:
                             let t2tf1 = await gsapi.spreadsheets.values.get(opt2ttf1);
                             let t2tf2 = await gsapi.spreadsheets.values.get(opt2ttf2);
-                            verifytf(ekii, i, t2tf1.data.values, t2tf2.data.values);
+                            verifytf(ekii, i, owner, t2tf1.data.values, t2tf2.data.values);
                             break;
                         case 3:
                             let t3tf1 = await gsapi.spreadsheets.values.get(opt3ttf1);
                             let t3tf2 = await gsapi.spreadsheets.values.get(opt3ttf2);
-                            verifytf(ekii, i, t3tf1.data.values, t3tf2.data.values);
+                            verifytf(ekii, i, owner, t3tf1.data.values, t3tf2.data.values);
                             break;
                         case 4:
                             let tatf1 = await gsapi.spreadsheets.values.get(optattf1);
                             let tatf2 = await gsapi.spreadsheets.values.get(optattf2);
-                            verifytf(ekii, i, tatf1.data.values, tatf2.data.values);
+                            verifytf(ekii, i, owner, tatf1.data.values, tatf2.data.values);
                             console.log(tatf1.data.values);
                             break;
                     }
@@ -630,7 +644,8 @@ async function gsrun(cl) {
         res.send("")
     });
 
-    async function verifytf(ekii, teamc, ttf1, ttf2) {
+    async function verifytf(ekii, teamc, owner, ttf1, ttf2) {
+        let tname = await gsapi.spreadsheets.values.get(optteam);
         if (ttf1[ekii][0] === "true") {
             if (ttf2[ekii][0] === "true") {
                 res.redirect('/')
@@ -645,6 +660,10 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf02);
+                        if (owner[ekii][0] === "無") {
+                            owner[ekii][0] = tname[0][teamc];
+                            updateowner(owner);
+                        }
                         break;
                     case 1:
                         const ekitf12 = {
@@ -654,6 +673,10 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf12);
+                        if (owner[ekii][0] === "無") {
+                            owner[ekii][0] = tname[0][teamc];
+                            updateowner(owner);
+                        }
                         break;
                     case 2:
                         const ekitf22 = {
@@ -663,6 +686,10 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf22);
+                        if (owner[ekii][0] === "無") {
+                            owner[ekii][0] = tname[0][teamc];
+                            updateowner(owner);
+                        }
                         break;
                     case 3:
                         const ekitf32 = {
@@ -672,6 +699,10 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitf32);
+                        if (owner[ekii][0] === "無") {
+                            owner[ekii][0] = tname[0][teamc];
+                            updateowner(owner);
+                        }
                         break;
                     case 4:
                         const ekitfa2 = {
@@ -681,6 +712,10 @@ async function gsrun(cl) {
                             resource: {"values": ttf2}
                         }
                         await gsapi.spreadsheets.values.update(ekitfa2);
+                        if (owner[ekii][0] === "無") {
+                            owner[ekii][0] = tname[0][teamc];
+                            updateowner(owner);
+                        }
                         break;
                 }
             }
@@ -696,6 +731,7 @@ async function gsrun(cl) {
                         resource: {"values": ttf1}
                     }
                     await gsapi.spreadsheets.values.update(ekitf01);
+
                     break;
                 case 1:
                     const ekitf11 = {
@@ -735,6 +771,17 @@ async function gsrun(cl) {
                     break;
             }
         }
+    }
+
+    async function updateowner(owner) {
+        const upowner = {
+            spreadsheetId: '18f7rUUJ_0Vq7IJ20v4Rm_uPp75g0aXHNsjWLqNnW6Ec',
+            range: 'topic!D1',
+            valueInputOption: 'USER_ENTERED',
+            resource: {"values": owner}
+        }
+        await gsapi.spreadsheets.values.update(upowner);
+        return;
     }
 }
 
