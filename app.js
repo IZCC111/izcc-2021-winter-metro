@@ -215,7 +215,13 @@ async function gsrun(cl) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (req.cookies.token) {
-            var detoken = jwt.verify(req.cookies.token, SECRET);
+            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+                if (err) {
+                    console.log("token錯誤");
+                    res.redirect('/');
+                    //token過期判斷
+                }
+            });
             tokenusername = detoken.username;
             for (let j = 0; j < tusernameArray.length; j++) {
                 if (tusernameArray[j] === tokenusername) {
@@ -296,7 +302,13 @@ async function gsrun(cl) {
             teampointArray[i] = teampoint.data.values[0][i];
         }
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET);
+            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+                if (err) {
+                    console.log("token錯誤");
+                    res.redirect('/');
+                    //token過期判斷
+                }
+            });
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -363,7 +375,13 @@ async function gsrun(cl) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET);
+            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+                if (err) {
+                    console.log("token錯誤");
+                    res.redirect('/');
+                    //token過期判斷
+                }
+            });
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -511,7 +529,13 @@ async function gsrun(cl) {
                 pidArray[i] = propsid.data.values[i][0];
                 ptopicArray[i] = propstopic.data.values[i][0];
             }
-            var detoken = jwt.verify(cookietoken, SECRET);
+            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+                if (err) {
+                    console.log("token錯誤");
+                    res.redirect('/');
+                    //token過期判斷
+                }
+            });
             tokenusername = detoken.username;
             console.log(tokenusername);
             for (let i = 0; i < tusername.data.values[0].length; i++) {
@@ -598,7 +622,13 @@ async function gsrun(cl) {
         }
         let cookietoken = req.cookies.token;
         if (cookietoken) {
-            var detoken = jwt.verify(cookietoken, SECRET);
+            var detoken = jwt.verify(cookietoken, SECRET, function (err) {
+                if (err) {
+                    console.log("token錯誤");
+                    res.redirect('/');
+                    //token過期判斷
+                }
+            });
             tokenusername = detoken.username;
             console.log(tokenusername);
             let tusername = await gsapi.spreadsheets.values.get(optusername);
