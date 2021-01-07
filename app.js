@@ -612,27 +612,27 @@ async function gsrun(cl) {
                         case 0:
                             let t0tf1 = await gsapi.spreadsheets.values.get(opt0ttf1);
                             let t0tf2 = await gsapi.spreadsheets.values.get(opt0ttf2);
-                            verifytf(ekii, i, owner, t0tf1.data.values, t0tf2.data.values);
+                            verifytf(ekii, i, ownerArray, t0tf1.data.values, t0tf2.data.values);
                             break;
                         case 1:
                             let t1tf1 = await gsapi.spreadsheets.values.get(opt1ttf1);
                             let t1tf2 = await gsapi.spreadsheets.values.get(opt1ttf2);
-                            verifytf(ekii, i, owner, t1tf1.data.values, t1tf2.data.values);
+                            verifytf(ekii, i, ownerArray, t1tf1.data.values, t1tf2.data.values);
                             break;
                         case 2:
                             let t2tf1 = await gsapi.spreadsheets.values.get(opt2ttf1);
                             let t2tf2 = await gsapi.spreadsheets.values.get(opt2ttf2);
-                            verifytf(ekii, i, owner, t2tf1.data.values, t2tf2.data.values);
+                            verifytf(ekii, i, ownerArray, t2tf1.data.values, t2tf2.data.values);
                             break;
                         case 3:
                             let t3tf1 = await gsapi.spreadsheets.values.get(opt3ttf1);
                             let t3tf2 = await gsapi.spreadsheets.values.get(opt3ttf2);
-                            verifytf(ekii, i, owner, t3tf1.data.values, t3tf2.data.values);
+                            verifytf(ekii, i, ownerArray, t3tf1.data.values, t3tf2.data.values);
                             break;
                         case 4:
                             let tatf1 = await gsapi.spreadsheets.values.get(optattf1);
                             let tatf2 = await gsapi.spreadsheets.values.get(optattf2);
-                            verifytf(ekii, i, owner, tatf1.data.values, tatf2.data.values);
+                            verifytf(ekii, i, ownerArray, tatf1.data.values, tatf2.data.values);
                             console.log(tatf1.data.values);
                             break;
                     }
