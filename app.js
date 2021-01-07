@@ -772,6 +772,8 @@ async function gsrun(cl) {
                         console.log(owner[ekii]);
                         console.log(tnameArray[teamc]);
                         updateowner(owner);
+                    }else{
+                        console.log('else');
                     }
                     break;
             }
