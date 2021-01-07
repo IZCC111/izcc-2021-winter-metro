@@ -215,7 +215,7 @@ async function gsrun(cl) {
             tusernameArray[i] = tusername.data.values[0][i];
         }
         if (req.cookies.token) {
-            var detoken = jwt.verify(req.cookies.token, SECRET, function (err) {
+            jwt.verify(req.cookies.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
                     res.clearCookie('token');
@@ -223,6 +223,7 @@ async function gsrun(cl) {
                     //token過期判斷
                 }
             });
+            var detoken = jwt.verify(req.cookies.token, SECRET);
             tokenusername = detoken.username;
             for (let j = 0; j < tusernameArray.length; j++) {
                 if (tusernameArray[j] === tokenusername) {
