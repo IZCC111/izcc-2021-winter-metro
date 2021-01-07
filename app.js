@@ -594,9 +594,8 @@ async function gsrun(cl) {
         let owner = await gsapi.spreadsheets.values.get(optowner);
         let ownerArray = [];
         for (let i = 0; i < owner.data.values.length; i++) {
-            ownerArray[i] = owner.data.values[i][0];
+            ownerArray[i] = JSON.stringify(owner.data.values[i][0]);
         }
-        ownerArray = JSON.stringify(ownerArray);
         let cookietoken = req.cookies.token;
         if (cookietoken) {
             var detoken = jwt.verify(cookietoken, SECRET);
