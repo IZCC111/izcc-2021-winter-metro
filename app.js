@@ -218,6 +218,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(req.cookies.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
@@ -273,6 +274,7 @@ async function gsrun(cl) {
             jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
@@ -305,6 +307,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
@@ -378,6 +381,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
@@ -532,6 +536,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(req.body.token, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
@@ -625,6 +630,7 @@ async function gsrun(cl) {
             var detoken = jwt.verify(cookietoken, SECRET, function (err) {
                 if (err) {
                     console.log("token錯誤");
+                    res.clearCookie('token');
                     res.redirect('/');
                     //token過期判斷
                 }
