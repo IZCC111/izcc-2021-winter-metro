@@ -713,7 +713,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf01);
                     if (owner[ekii][0] === "無") {
                         owner[ekii][0] = tname[0][teamc];
-                        updateowner(owner);
+                        await updateowner(owner);
                     }
                     break;
                 case 1:
@@ -726,7 +726,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf11);
                     if (owner[ekii][0] === "無") {
                         owner[ekii][0] = tname[0][teamc];
-                        updateowner(owner);
+                        await updateowner(owner);
                     }
                     break;
                 case 2:
@@ -739,7 +739,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf21);
                     if (owner[ekii][0] === "無") {
                         owner[ekii][0] = tname[0][teamc];
-                        updateowner(owner);
+                        await updateowner(owner);
                     }
                     break;
                 case 3:
@@ -752,7 +752,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitf31);
                     if (owner[ekii][0] === "無") {
                         owner[ekii][0] = tname[0][teamc];
-                        updateowner(owner);
+                        await updateowner(owner);
                     }
                     break;
                 case 4:
@@ -765,7 +765,7 @@ async function gsrun(cl) {
                     await gsapi.spreadsheets.values.update(ekitfa1);
                     if (owner[ekii][0] === "無") {
                         owner[ekii][0] = tname[0][teamc];
-                        updateowner(owner);
+                        await updateowner(owner);
                     }
                     break;
             }
